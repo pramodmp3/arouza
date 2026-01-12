@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arouza Techlabs | Comic Footer Hub</title>
+    <!-- GSAP for smooth reveals -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+      :root {
+        --site-bg: #ffffff; /* The rest of your website background */
+        --footer-bg-area: #e2e8f0; /* New background for the grid area */
+        --panel-bg: #ffffff;
+        --accent-yellow: #ffd700;
+        --accent-blue: #0077b6;
+        --accent-red: #e63946;
+        --ink-black: #1a1a1a;
+        --comic-border: 4px;
+        --comic-shadow: 6px 6px 0px var(--ink-black);
+        --font-main: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: var(--site-bg);
+        font-family: var(--font-main);
+        color: var(--ink-black);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* --- WRAPPER FOR FOOTER DIFFERENTIATION --- */
+      .footer-wrapper {
+        background-color: var(--footer-bg-area);
+        border-top: var(--comic-border) solid var(--ink-black);
+        padding: 60px 20px;
+        margin-top: auto; /* Pushes footer to bottom */
+        position: relative;
+      }
+
+      /* --- COMIC TEXTURE UTILITIES --- */
+      .comic-panel {
+        background-color: var(--panel-bg);
+        border: var(--comic-border) solid var(--ink-black);
+        box-shadow: var(--comic-shadow);
+        border-radius: 12px;
+        padding: 24px;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.2s ease;
+      }
+
+      /* Ben-Day Dots Texture Overlay */
+      .comic-panel::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: radial-gradient(
+          var(--ink-black) 0.5px,
+          transparent 0.5px
+        );
+        background-size: 8px 8px;
+        opacity: 0.03;
+        pointer-events: none;
+      }
+
+      .panel-title {
+        display: inline-block;
+        background: var(--ink-black);
+        color: white;
+        padding: 4px 12px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transform: rotate(-1deg);
+        margin-bottom: 15px;
+        border-radius: 4px;
+        font-size: 0.9rem;
+      }
+
+      /* --- FOOTER GRID STRUCTURE --- */
+      .comic-footer {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        gap: 30px;
+        width: 100%;
+        grid-template-columns: 1fr;
+      }
+
+      @media (min-width: 992px) {
+        .comic-footer {
+          grid-template-columns: repeat(4, 1fr);
+          grid-template-rows: auto auto;
+        }
+        .brand-panel {
+          grid-column: span 2;
+        }
+        .newsletter-panel {
+          grid-column: span 2;
+        }
+        .links-panel {
+          grid-column: span 1;
+        }
+        .news-panel {
+          grid-column: span 1;
+        }
+        .address-panel {
+          grid-column: span 1;
+        }
+        .social-panel {
+          grid-column: span 1;
+        }
+      }
+
+      /* --- BRAND PANEL --- */
+      .brand-panel {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      /* .brand-logo {
+        width: 60px;
+        height: 60px;
+        border: 3px solid var(--ink-black);
+        background: var(--accent-yellow);
+        margin-bottom: 15px;
+        border-radius: 8px;
+      } */
+      /* Container cleanup */
+      .comic-panel.brand-panel {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 3rem 1rem;
+        background: transparent; /* Removed the box */
+        text-align: center;
+      }
+
+      /* Make the logo the star */
+      .brand-logo img {
+        width: 100%;
+        max-width: 280px; /* Increased size - adjust as needed */
+        height: auto;
+        display: block;
+        margin: 0 auto 1.5rem auto;
+
+        /* Smooth entrance/hover effect */
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.1));
+      }
+
+      /* Subtle hover interaction */
+      .brand-logo img:hover {
+        transform: scale(1.05); /* Grows slightly when hovered */
+      }
+
+      /* The tagline below the logo */
+      .brand-note {
+        font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: #444;
+        letter-spacing: 0.5px;
+        opacity: 0.8;
+        margin: 0;
+      }
+      .brand-name {
+        font-size: 2rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        line-height: 1;
+      }
+      .brand-note {
+        margin-top: 10px;
+        font-style: italic;
+        color: #555;
+      }
+
+      /* --- LINKS --- */
+      .links-list {
+        list-style: none;
+      }
+      .links-list li {
+        margin-bottom: 8px;
+      }
+      .links-list a {
+        text-decoration: none;
+        color: var(--ink-black);
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+      }
+      .links-list a:hover {
+        color: var(--accent-blue);
+        text-decoration: underline;
+      }
+
+      /* --- NEWS --- */
+      .news-item {
+        margin-bottom: 12px;
+        border-left: 3px solid var(--accent-red);
+        padding-left: 10px;
+      }
+      .news-date {
+        font-size: 0.7rem;
+        font-weight: bold;
+        color: var(--accent-red);
+      }
+      .news-headline {
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+
+      /* --- ADDRESS --- */
+      address {
+        font-style: normal;
+        line-height: 1.6;
+        font-weight: 600;
+      }
+
+      /* --- SOCIAL --- */
+      .social-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 10px;
+      }
+      .social-icon {
+        width: 44px;
+        height: 44px;
+        border: 3px solid var(--ink-black);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--panel-bg);
+        transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        cursor: pointer;
+      }
+      .social-icon svg {
+        width: 22px;
+        height: 22px;
+        fill: var(--ink-black);
+      }
+      .social-icon:hover {
+        transform: translateY(-5px) rotate(3deg);
+        background: var(--accent-yellow);
+        box-shadow: 4px 4px 0px var(--ink-black);
+      }
+
+      /* --- NEWSLETTER --- */
+      .newsletter-form {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 10px;
+      }
+      @media (min-width: 600px) {
+        .newsletter-form {
+          flex-direction: row;
+        }
+      }
+      .comic-input {
+        flex: 1;
+        padding: 12px 16px;
+        border: 3px solid var(--ink-black);
+        border-radius: 8px;
+        font-family: inherit;
+        font-weight: 600;
+      }
+      .comic-btn {
+        background: var(--accent-blue);
+        color: white;
+        border: 3px solid var(--ink-black);
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-weight: 900;
+        text-transform: uppercase;
+        cursor: pointer;
+        box-shadow: 4px 4px 0px var(--ink-black);
+        transition: all 0.1s;
+        transform: skewX(-5deg);
+      }
+      .comic-btn:hover {
+        background: #005f91;
+        transform: skewX(-5deg) translate(-2px, -2px);
+        box-shadow: 6px 6px 0px var(--ink-black);
+      }
+      .comic-btn:active {
+        transform: skewX(-5deg) translate(2px, 2px);
+        box-shadow: 0px 0px 0px var(--ink-black);
+      }
+
+      /* --- BOTTOM DIFFERENTIATION --- */
+      .comic-divider {
+        max-width: 1200px;
+        width: 100%;
+        height: 4px;
+        background: var(--ink-black);
+        margin: 40px auto 20px auto;
+        border-radius: 2px;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        font-weight: 800;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+        opacity: 0.6;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Dummy content to show transition -->
+    <div style="padding: 100px 20px; text-align: center">
+      <h1>Main Site Content</h1>
+      <p>Scroll down to see the comic-textured footer hub.</p>
+    </div>
+
+    <!-- NEW FOOTER WRAPPER WITH BACKGROUND COLOR -->
+    <div class="footer-wrapper">
+      <footer class="comic-footer">
+        <!-- 1. BRAND PANEL -->
+        <section class="comic-panel brand-panel">
+          <div class="brand-logo"><img src="./assets/logo.png" alt="" /></div>
+          <!-- <h2 class="brand-name">Arouza Techlabs</h2> -->
+          <p class="brand-note">Engineering the future, frame by frame.</p>
+        </section>
+
+        <!-- 6. NEWSLETTER PANEL -->
+        <section class="comic-panel newsletter-panel">
+          <span class="panel-title">Join the Lab</span>
+          <p style="margin-bottom: 15px; font-weight: 500">
+            Get the latest tech blueprints in your inbox.
+          </p>
+          <form class="newsletter-form" onsubmit="return false;">
+            <input
+              type="email"
+              class="comic-input"
+              placeholder="Your Email Address"
+              required
+            />
+            <button type="submit" class="comic-btn">Subscribe</button>
+          </form>
+        </section>
+
+        <!-- 2. QUICK LINKS PANEL -->
+        <nav class="comic-panel links-panel">
+          <span class="panel-title">Navigation</span>
+          <ul class="links-list">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./service.html">Services</a></li>
+            <li><a href="./srusti.html">Srusti AI</a></li>
+            <li><a href="./about.html">About</a></li>
+            <li><a href="./contact.html">Contact</a></li>
+            <li><a href="./blog.html">Blog</a></li>
+          </ul>
+        </nav>
+
+        <!-- 3. LATEST NEWS PANEL -->
+        <section class="comic-panel news-panel">
+          <span class="panel-title">Dispatch</span>
+          <div class="news-item">
+            <div class="news-date">MAR 2024</div>
+            <div class="news-headline">Srusti AI reaches 2.0 stability.</div>
+          </div>
+          <div class="news-item">
+            <div class="news-date">FEB 2024</div>
+            <div class="news-headline">New HQ opened in Bangalore.</div>
+          </div>
+        </section>
+
+        <!-- 4. HQ ADDRESS PANEL -->
+        <section class="comic-panel address-panel">
+          <span class="panel-title">Headquarters</span>
+          <address>
+            Basavanagudi<br />
+            Bangalore, India<br />
+            Zip: 560004
+          </address>
+        </section>
+
+        <!-- 5. SOCIAL FOLLOW PANEL -->
+        <section class="comic-panel social-panel">
+          <span class="panel-title">Follow Us</span>
+          <div class="social-grid">
+            <div class="social-icon" title="Instagram">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M7.75 2h8.5C19.42 2 22 4.58 22 7.75v8.5C22 19.42 19.42 22 16.25 22h-8.5C4.58 22 2 19.42 2 16.25v-8.5C2 4.58 4.58 2 7.75 2zm0 1.5c-2.35 0-4.25 1.9-4.25 4.25v8.5c0 2.35 1.9 4.25 4.25 4.25h8.5c2.35 0 4.25-1.9 4.25-4.25v-8.5c0-2.35-1.9-4.25-4.25-4.25h-8.5zM12 7a5 5 0 110 10 5 5 0 010-10zm0 1.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm5.25-.75a1 1 0 110 2 1 1 0 010-2z"
+                />
+              </svg>
+            </div>
+            <div class="social-icon" title="Twitter">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                />
+              </svg>
+            </div>
+            <div class="social-icon" title="Facebook">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V1.85c-.33-.04-1.47-.14-2.81-.14-2.8 0-4.69 1.71-4.69 4.83v2.96H7v4h3V22h4v-8.5z"
+                />
+              </svg>
+            </div>
+            <div class="social-icon" title="YouTube">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M21.58 7.19c-.23-.86-.91-1.54-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42c-.86.23-1.54.91-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.91 1.54 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42c.86-.23 1.54-.91 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81zM10 15V9l5.2 3-5.2 3z"
+                />
+              </svg>
+            </div>
+            <div class="social-icon" title="LinkedIn">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a2.7 2.7 0 0 0-2.7-2.7c-1.2 0-1.8.7-2.1 1.1v-.8h-3v7.7h3v-4.1c0-.2 0-.4.1-.6.2-.4.5-.8 1-.8.7 0 1 .5 1 1.3v4.2h3M7 18.5v-7.7h-3v7.7h3M5.5 9.2a1.6 1.6 0 0 0 1.6-1.6 1.6 1.6 0 0 0-3.2 0 1.6 1.6 0 0 0 1.6 1.6z"
+                />
+              </svg>
+            </div>
+          </div>
+        </section>
+      </footer>
+
+      <div class="comic-divider"></div>
+
+      <div class="footer-bottom">
+        &copy; 2024 Arouza Techlabs. All Rights Reserved. Built for Impact.
+      </div>
+    </div>
+
+    <script>
+      window.addEventListener("load", () => {
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.from(".comic-panel", {
+          scrollTrigger: { trigger: ".comic-footer", start: "top 90%" },
+          y: 50,
+          opacity: 0,
+          rotate: (i) => (i % 2 === 0 ? -2 : 2),
+          duration: 0.8,
+          stagger: 0.1,
+          ease: "power3.out",
+        });
+
+        document.querySelectorAll(".comic-panel").forEach((panel) => {
+          panel.addEventListener("mouseenter", () => {
+            gsap.to(panel, {
+              scale: 1.02,
+              rotation: Math.random() * 1 - 0.5,
+              duration: 0.3,
+              ease: "power2.out",
+            });
+          });
+          panel.addEventListener("mouseleave", () => {
+            gsap.to(panel, {
+              scale: 1,
+              rotation: 0,
+              duration: 0.3,
+              ease: "power2.inOut",
+            });
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

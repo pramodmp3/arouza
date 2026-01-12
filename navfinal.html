@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arouza Techlabs | Comic Navbar</title>
+    <!-- GSAP for Smooth Staggered Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+      /* --- CSS VARIABLES & RESET --- */
+      :root {
+        --comic-black: #1a1a1a;
+        --comic-white: #ffffff;
+        --comic-accent: #ffde00; /* Cyber Yellow */
+        --comic-blue: #2d5bff;
+        --border-width: 4px;
+        --shadow-offset: 6px;
+        --font-main: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        --transition-fast: 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: var(--font-main);
+        background-color: #f0f0f0;
+        min-height: 200vh;
+      }
+
+      /* --- NAVBAR CONTAINER --- */
+      .comic-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        padding: 15px 25px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: transform 0.3s ease;
+      }
+
+      /* --- LOGO --- */
+      .nav-logo {
+        height: 50px;
+        width: 180px;
+        background: var(--comic-white);
+        border: var(--border-width) solid var(--comic-black);
+        box-shadow: var(--shadow-offset) var(--shadow-offset) 0px
+          var(--comic-black);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 5px;
+        transform: rotate(-1deg);
+        z-index: 3001; /* Highest layer for branding */
+      }
+
+      .nav-logo img {
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+      }
+
+      /* --- DESKTOP MENU --- */
+      .nav-menu-wrapper {
+        display: none;
+      }
+
+      /* --- HAMBURGER BUTTON --- */
+      .nav-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 50px;
+        height: 50px;
+        background: var(--comic-accent);
+        border: var(--border-width) solid var(--comic-black);
+        box-shadow: 4px 4px 0px var(--comic-black);
+        cursor: pointer;
+        padding: 10px;
+        z-index: 3001; /* Above the overlay */
+        transition: var(--transition-fast);
+      }
+
+      .nav-toggle:active {
+        transform: translate(2px, 2px);
+        box-shadow: 2px 2px 0px var(--comic-black);
+      }
+
+      .burger-line {
+        width: 100%;
+        height: 5px;
+        background: var(--comic-black);
+        border-radius: 10px;
+        transition: all 0.3s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+        transform-origin: center;
+      }
+
+      .nav-toggle.is-active .line-1 {
+        transform: translateY(10px) rotate(45deg);
+      }
+      .nav-toggle.is-active .line-2 {
+        opacity: 0;
+        transform: scaleX(0);
+      }
+      .nav-toggle.is-active .line-3 {
+        transform: translateY(-10px) rotate(-45deg);
+      }
+
+      /* --- FULL SCREEN MOBILE OVERLAY --- */
+      .mobile-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: var(--comic-white);
+        visibility: hidden;
+        opacity: 0;
+        z-index: 3000;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        overflow-y: auto; /* Allow scrolling if menu is taller than screen */
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+
+      .mobile-overlay.is-active {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      /* The Content Panel */
+      .mobile-panel {
+        width: 100%;
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; /* Items start from top */
+        align-items: center;
+        gap: 15px;
+        padding-top: 130px; /* Forces menu below the 50px + padding logo area */
+        padding-bottom: 50px;
+        background-color: var(--comic-white);
+        background-image: radial-gradient(
+          var(--comic-black) 1px,
+          transparent 1px
+        );
+        background-size: 20px 20px;
+        background-position: center;
+      }
+
+      .mobile-link {
+        font-size: 1.8rem; /* Slightly smaller to fit better */
+        font-weight: 900;
+        text-decoration: none;
+        color: var(--comic-black);
+        text-transform: uppercase;
+        padding: 12px 20px;
+        background: var(--comic-white);
+        border: var(--border-width) solid var(--comic-black);
+        box-shadow: 6px 6px 0 var(--comic-black);
+        transition: var(--transition-fast);
+        width: 85%;
+        max-width: 300px;
+        text-align: center;
+        position: relative;
+      }
+
+      .mobile-link:active {
+        transform: translate(3px, 3px);
+        box-shadow: 1px 1px 0 var(--comic-black);
+      }
+
+      .mobile-cta {
+        background: var(--comic-blue);
+        color: var(--comic-white);
+        margin-top: 5px;
+      }
+
+      /* --- DESKTOP MEDIA QUERIES --- */
+      @media (min-width: 1024px) {
+        .nav-toggle {
+          display: none;
+        }
+        .mobile-overlay {
+          display: none;
+        }
+
+        .nav-menu-wrapper {
+          display: flex;
+          align-items: center;
+          gap: 40px;
+        }
+
+        .nav-desktop-list {
+          display: flex;
+          list-style: none;
+          background: var(--comic-black);
+          padding: 4px;
+          gap: 4px;
+          border: var(--border-width) solid var(--comic-black);
+          box-shadow: var(--shadow-offset) var(--shadow-offset) 0
+            rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-item {
+          background: var(--comic-white);
+          padding: 10px 25px;
+          position: relative;
+          transition: var(--transition-fast);
+          cursor: pointer;
+        }
+
+        .nav-item a {
+          text-decoration: none;
+          color: var(--comic-black);
+          font-weight: 800;
+          text-transform: uppercase;
+          font-size: 0.9rem;
+          letter-spacing: 1px;
+        }
+
+        .nav-item:hover {
+          transform: translateY(-3px);
+          background: var(--comic-accent);
+        }
+
+        .nav-cta-desktop {
+          background: var(--comic-accent);
+          border: var(--border-width) solid var(--comic-black);
+          padding: 12px 28px;
+          font-weight: 900;
+          text-transform: uppercase;
+          color: var(--comic-black);
+          text-decoration: none;
+          box-shadow: var(--shadow-offset) var(--shadow-offset) 0
+            var(--comic-black);
+          transition: var(--transition-fast);
+        }
+
+        .nav-cta-desktop:hover {
+          transform: translate(-2px, -2px);
+          box-shadow: 8px 8px 0 var(--comic-black);
+          background: var(--comic-white);
+        }
+      }
+
+      body.no-scroll {
+        overflow: hidden;
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="comic-nav" id="mainNav">
+      <!-- Logo Section -->
+      <div class="nav-logo">
+        <img src="" alt="AROUZA TECHLABS" />
+      </div>
+
+      <!-- Desktop Menu -->
+      <div class="nav-menu-wrapper">
+        <ul class="nav-desktop-list">
+          <li class="nav-item"><a href="./index.html">Home</a></li>
+          <li class="nav-item"><a href="./service.html">Services</a></li>
+          <li class="nav-item"><a href="./srusti.html">Srusti AI</a></li>
+          <li class="nav-item"><a href="./about.html">About</a></li>
+        </ul>
+        <a href="./contact.html" class="nav-cta-desktop">Contact</a>
+      </div>
+
+      <!-- Mobile Toggle (Burger) -->
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation">
+        <span class="burger-line line-1"></span>
+        <span class="burger-line line-2"></span>
+        <span class="burger-line line-3"></span>
+      </button>
+
+      <!-- FULL SCREEN Mobile Overlay -->
+      <div class="mobile-overlay" id="mobileOverlay">
+        <div class="mobile-panel" id="mobilePanel">
+          <a href="./index.html" class="mobile-link">Home</a>
+          <a href="./service.html" class="mobile-link">Services</a>
+          <a href="./srusti.html" class="mobile-link">Srusti AI</a>
+          <a href="./about.html" class="mobile-link">About</a>
+          <a href="./contact.html" class="mobile-link mobile-cta">Contact Us</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Content for visual testing -->
+    <div style="padding: 150px 25px">
+      <h1 style="font-size: 3rem; margin-bottom: 20px; color: #333">
+        Welcome to Arouza Techlabs
+      </h1>
+      <p style="line-height: 1.6; color: #666; font-size: 1.2rem">
+        Scroll down to see the navbar behavior. Click the menu to see the
+        full-screen opaque overlay.
+      </p>
+      <div
+        style="
+          height: 1000px;
+          background: linear-gradient(#eee, #ccc);
+          margin-top: 50px;
+          border: 4px dashed #999;
+        "
+      ></div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const navToggle = document.getElementById("navToggle");
+        const mobileOverlay = document.getElementById("mobileOverlay");
+        const mobileLinks = document.querySelectorAll(".mobile-link");
+        const body = document.body;
+
+        let isMenuOpen = false;
+
+        const animateIn = () => {
+          gsap.fromTo(
+            mobileLinks,
+            { y: 40, opacity: 0, scale: 0.9, rotate: -2 },
+            {
+              y: 0,
+              opacity: 1,
+              scale: 1,
+              rotate: 0,
+              stagger: 0.08,
+              duration: 0.4,
+              ease: "back.out(1.2)",
+            }
+          );
+        };
+
+        const toggleMenu = () => {
+          isMenuOpen = !isMenuOpen;
+
+          navToggle.classList.toggle("is-active", isMenuOpen);
+          mobileOverlay.classList.toggle("is-active", isMenuOpen);
+
+          if (isMenuOpen) {
+            body.classList.add("no-scroll");
+            animateIn();
+          } else {
+            body.classList.remove("no-scroll");
+          }
+        };
+
+        navToggle.addEventListener("click", toggleMenu);
+
+        mobileLinks.forEach((link) => {
+          link.addEventListener("click", () => {
+            if (isMenuOpen) toggleMenu();
+          });
+        });
+
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && isMenuOpen) {
+            toggleMenu();
+          }
+        });
+
+        let lastScroll = 0;
+        const nav = document.getElementById("mainNav");
+        window.addEventListener("scroll", () => {
+          const currentScroll = window.pageYOffset;
+          if (currentScroll <= 0) {
+            nav.style.transform = "translateY(0)";
+            return;
+          }
+          if (currentScroll > lastScroll && !isMenuOpen) {
+            nav.style.transform = "translateY(-110%)";
+          } else {
+            nav.style.transform = "translateY(0)";
+          }
+          lastScroll = currentScroll;
+        });
+      });
+    </script>
+  </body>
+</html>

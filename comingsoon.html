@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arouza TechLabs | Something Smart is Coming</title>
+    <!-- GSAP for Professional Motion Orchestration -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+      :root {
+        --orange: #ff6b35;
+        --purple: #6b4ee6;
+        --yellow: #ffd23f;
+        --green: #4caf50;
+        --red: #e91e63;
+        --black: #1a1a1a;
+        --white: #ffffff;
+        --bg-page: #f0f2f9;
+        --bg-visual: linear-gradient(135deg, #4a32a8 0%, #6b4ee6 100%);
+        --gray-light: #e0e0e0;
+        --gray-text: #666677;
+        --comic-border: 4px solid var(--black);
+        --comic-shadow: 6px 6px 0px var(--black);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      html,
+      body {
+        height: 100%;
+        width: 100%;
+        overflow-x: hidden;
+      }
+
+      body {
+        background-color: var(--bg-page);
+        color: var(--black);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #app {
+        position: relative;
+        width: 100%;
+        max-width: 1200px;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 40px 20px;
+        text-align: center;
+        z-index: 1;
+      }
+
+      /* --- BACKGROUND DECOR --- */
+      .bg-dots {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: radial-gradient(
+          var(--gray-light) 2px,
+          transparent 2px
+        );
+        background-size: 30px 30px;
+        z-index: -1;
+        opacity: 0.5;
+      }
+
+      /* --- COMIC SCENE CONTAINER --- */
+      .scene-container {
+        position: relative;
+        width: 100%;
+        max-width: 320px;
+        aspect-ratio: 1;
+        margin-bottom: 1.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-shrink: 0;
+      }
+
+      .main-svg {
+        width: 100%;
+        height: 100%;
+        filter: drop-shadow(8px 8px 0px rgba(0, 0, 0, 0.1));
+      }
+
+      /* --- TYPOGRAPHY --- */
+      .headline-container {
+        perspective: 1000px;
+        margin-bottom: 1rem;
+        width: 100%;
+      }
+
+      .headline {
+        font-size: clamp(2.2rem, 10vw, 4.5rem);
+        font-weight: 900;
+        text-transform: uppercase;
+        line-height: 0.95;
+        color: var(--black);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.2em;
+      }
+
+      .word {
+        display: inline-block;
+        position: relative;
+      }
+
+      .sub-headline {
+        font-size: clamp(0.95rem, 3vw, 1.1rem);
+        color: var(--gray-text);
+        font-weight: 600;
+        margin-bottom: 2.5rem;
+        max-width: 450px;
+        line-height: 1.4;
+      }
+
+      /* --- INTERACTIVE CTA --- */
+      .cta-box {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        width: 100%;
+        max-width: 400px;
+        min-height: 80px;
+      }
+
+      .input-wrapper {
+        width: 100%;
+        position: relative;
+        background: var(--white);
+        border: var(--comic-border);
+        border-radius: 14px;
+        padding: 6px;
+        display: flex;
+        box-shadow: var(--comic-shadow);
+        transform: rotate(-0.5deg);
+      }
+
+      input {
+        flex: 1;
+        border: none;
+        padding: 14px 18px;
+        font-size: 1rem;
+        outline: none;
+        background: transparent;
+        font-weight: 600;
+        min-width: 0;
+      }
+
+      .btn-submit,
+      .btn-home {
+        background: var(--orange);
+        color: var(--white);
+        border: 3px solid var(--black);
+        padding: 10px 24px;
+        border-radius: 10px;
+        font-weight: 900;
+        cursor: pointer;
+        text-transform: uppercase;
+        white-space: nowrap;
+        transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      /* Home Button Style Override */
+      .btn-home {
+        background: var(--green);
+        padding: 16px 40px;
+        font-size: 1.2rem;
+        box-shadow: var(--comic-shadow);
+        display: none; /* Initially hidden */
+        text-decoration: none;
+      }
+
+      /* --- COMIC ELEMENTS --- */
+      .speech-bubble {
+        position: absolute;
+        background: var(--white);
+        border: var(--comic-border);
+        padding: 8px 12px;
+        border-radius: 16px;
+        font-weight: 900;
+        font-size: 0.75rem;
+        z-index: 10;
+        box-shadow: 4px 4px 0 var(--black);
+        white-space: nowrap;
+        display: none;
+      }
+
+      .speech-bubble::after {
+        content: "";
+        position: absolute;
+        bottom: -15px;
+        left: 20px;
+        border-width: 15px 15px 0 0;
+        border-style: solid;
+        border-color: var(--black) transparent transparent transparent;
+      }
+
+      .pop-star {
+        position: absolute;
+        pointer-events: none;
+        z-index: 5;
+        width: 40px;
+        height: 40px;
+        fill: var(--yellow);
+        stroke: var(--black);
+        stroke-width: 2px;
+      }
+
+      /* --- RESPONSIVENESS FIXES --- */
+      @media (max-width: 600px) {
+        #app {
+          padding: 30px 15px;
+          justify-content: flex-start;
+        }
+        .scene-container {
+          max-width: 240px;
+          margin-top: 20px;
+        }
+        .sub-headline {
+          margin-bottom: 2rem;
+        }
+        .input-wrapper {
+          flex-direction: column;
+          gap: 8px;
+          padding: 10px;
+          transform: rotate(0deg);
+        }
+        .btn-submit {
+          width: 100%;
+          padding: 14px;
+        }
+      }
+
+      @media (max-height: 500px) {
+        #app {
+          justify-content: flex-start;
+          padding: 20px;
+        }
+        .scene-container {
+          max-width: 150px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg-dots"></div>
+
+    <main id="app">
+      <!-- Living Lab Scene -->
+      <div class="scene-container" id="main-scene">
+        <div id="bubble-1" class="speech-bubble" style="top: -10px; right: 0px">
+          OPTIMIZING...
+        </div>
+        <div
+          id="bubble-2"
+          class="speech-bubble"
+          style="bottom: 20px; left: -20px"
+        >
+          READY?
+        </div>
+
+        <svg
+          class="main-svg"
+          viewBox="0 0 400 400"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <ellipse cx="200" cy="350" rx="100" ry="20" fill="rgba(0,0,0,0.05)" />
+          <g id="robot-head">
+            <rect
+              x="110"
+              y="100"
+              width="180"
+              height="180"
+              rx="40"
+              fill="var(--white)"
+              stroke="var(--black)"
+              stroke-width="6"
+            />
+            <line
+              x1="200"
+              y1="100"
+              x2="200"
+              y2="50"
+              stroke="var(--black)"
+              stroke-width="6"
+            />
+            <circle
+              id="antenna-tip"
+              cx="200"
+              cy="40"
+              r="12"
+              fill="var(--red)"
+              stroke="var(--black)"
+              stroke-width="4"
+            />
+            <rect
+              x="135"
+              y="145"
+              width="130"
+              height="60"
+              rx="30"
+              fill="var(--black)"
+            />
+            <circle id="eye-l" cx="165" cy="175" r="15" fill="var(--green)" />
+            <circle id="eye-r" cx="235" cy="175" r="15" fill="var(--green)" />
+            <rect
+              x="160"
+              y="220"
+              width="80"
+              height="20"
+              rx="10"
+              fill="var(--gray-light)"
+              stroke="var(--black)"
+              stroke-width="3"
+            />
+            <g id="mouth-bars">
+              <line
+                x1="175"
+                y1="225"
+                x2="175"
+                y2="235"
+                stroke="var(--black)"
+                stroke-width="2"
+              />
+              <line
+                x1="185"
+                y1="225"
+                x2="185"
+                y2="235"
+                stroke="var(--black)"
+                stroke-width="2"
+              />
+              <line
+                x1="195"
+                y1="225"
+                x2="195"
+                y2="235"
+                stroke="var(--black)"
+                stroke-width="2"
+              />
+              <line
+                x1="205"
+                y1="225"
+                x2="205"
+                y2="235"
+                stroke="var(--black)"
+                stroke-width="2"
+              />
+              <line
+                x1="215"
+                y1="225"
+                x2="215"
+                y2="235"
+                stroke="var(--black)"
+                stroke-width="2"
+              />
+              <line
+                x1="225"
+                y1="225"
+                x2="225"
+                y2="235"
+                stroke="var(--black)"
+                stroke-width="2"
+              />
+            </g>
+          </g>
+          <g id="orbits">
+            <circle
+              id="orbit-1"
+              cx="80"
+              cy="150"
+              r="25"
+              fill="var(--orange)"
+              stroke="var(--black)"
+              stroke-width="4"
+            />
+            <rect
+              id="orbit-2"
+              x="280"
+              y="80"
+              width="40"
+              height="40"
+              rx="8"
+              fill="var(--purple)"
+              stroke="var(--black)"
+              stroke-width="4"
+              transform="rotate(15, 300, 100)"
+            />
+            <polygon
+              id="orbit-3"
+              points="330,250 360,300 300,300"
+              fill="var(--yellow)"
+              stroke="var(--black)"
+              stroke-width="4"
+            />
+          </g>
+          <g
+            id="motion-lines"
+            stroke="var(--black)"
+            stroke-width="3"
+            stroke-linecap="round"
+          >
+            <line x1="50" y1="100" x2="80" y2="100" />
+            <line x1="320" y1="200" x2="350" y2="200" />
+            <line x1="100" y1="300" x2="130" y2="300" />
+          </g>
+        </svg>
+      </div>
+
+      <div class="headline-container">
+        <h1 class="headline" id="main-title">
+          <span class="word">AROUZA</span>
+          <span class="word">TECHLABS</span>
+        </h1>
+      </div>
+
+      <p class="sub-headline" id="subtext">
+        Soldering the future and painting the pixels for our upcoming digital
+        workshop.
+      </p>
+
+      <div class="cta-box" id="cta-container">
+        <div class="input-wrapper" id="form-container">
+          <input
+            type="email"
+            placeholder="Email for lab updates..."
+            id="email-input"
+          />
+          <button class="btn-submit" id="submit-btn">Notify Me</button>
+        </div>
+        <a href="/" class="btn-home" id="home-btn">Go To Home</a>
+      </div>
+    </main>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        initEntrySequence();
+        initAmbientMotion();
+        initInteractions();
+        initTextAnimation();
+      });
+
+      function initEntrySequence() {
+        const tl = gsap.timeline({ defaults: { ease: "back.out(1.5)" } });
+        gsap.set(".word", { y: 60, opacity: 0, rotateX: -90 });
+        gsap.set("#robot-head", { scale: 0, rotate: -20 });
+        gsap.set("#form-container", { scale: 0.9, opacity: 0, y: 30 });
+        gsap.set(".sub-headline", { opacity: 0 });
+        gsap.set("#orbits > *", { scale: 0 });
+
+        tl.to("#robot-head", {
+          scale: 1,
+          rotate: 0,
+          duration: 1.2,
+          ease: "elastic.out(1, 0.4)",
+        })
+          .to("#orbits > *", { scale: 1, stagger: 0.1, duration: 0.6 }, "-=0.6")
+          .to(
+            ".word",
+            { y: 0, opacity: 1, rotateX: 0, stagger: 0.15, duration: 0.8 },
+            "-=0.6"
+          )
+          .to(".sub-headline", { opacity: 1, duration: 0.8 }, "-=0.4")
+          .to(
+            "#form-container",
+            { scale: 1, opacity: 1, y: 0, duration: 0.8 },
+            "-=0.8"
+          )
+          .to(
+            ".speech-bubble",
+            { display: "block", scale: 0, opacity: 0, duration: 0 },
+            0
+          )
+          .to("#bubble-1", { scale: 1, opacity: 1, duration: 0.4 }, "+=0.2")
+          .to("#bubble-1", { scale: 0, opacity: 0, delay: 2.5 });
+      }
+
+      function initAmbientMotion() {
+        gsap.to("#robot-head", {
+          y: -12,
+          duration: 2.5,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+        });
+        const shake = () => {
+          gsap.to("#main-scene", {
+            x: "random(-2, 2)",
+            y: "random(-2, 2)",
+            duration: 0.1,
+            onComplete: shake,
+          });
+        };
+        shake();
+        const blink = () => {
+          gsap.to(["#eye-l", "#eye-r"], {
+            scaleY: 0.1,
+            duration: 0.1,
+            repeat: 1,
+            yoyo: true,
+            transformOrigin: "center",
+          });
+          setTimeout(blink, 3000 + Math.random() * 4000);
+        };
+        blink();
+        gsap.to("#antenna-tip", {
+          fill: "#ffd23f",
+          scale: 1.2,
+          duration: 0.5,
+          repeat: -1,
+          yoyo: true,
+          transformOrigin: "center",
+        });
+        gsap.to("#orbit-1", {
+          x: 8,
+          y: -8,
+          duration: 3,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+        });
+        gsap.to("#orbit-2", {
+          x: -12,
+          y: 12,
+          rotate: 30,
+          duration: 4,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+        });
+        gsap.to("#orbit-3", {
+          rotate: 360,
+          duration: 15,
+          repeat: -1,
+          ease: "none",
+          transformOrigin: "center",
+        });
+        gsap.to("#mouth-bars line", {
+          attr: { y2: 238 },
+          stagger: { each: 0.1, repeat: -1, yoyo: true },
+          duration: 0.3,
+        });
+        gsap.to(".bg-dots", {
+          backgroundPosition: "60px 60px",
+          duration: 30,
+          repeat: -1,
+          ease: "none",
+        });
+      }
+
+      function initTextAnimation() {
+        setInterval(() => {
+          gsap.to(".word", {
+            y: -5,
+            duration: 0.2,
+            yoyo: true,
+            repeat: 1,
+            stagger: 0.05,
+            ease: "power2.out",
+          });
+        }, 6000);
+      }
+
+      function initInteractions() {
+        const app = document.getElementById("app");
+        const submitBtn = document.getElementById("submit-btn");
+        const formContainer = document.getElementById("form-container");
+        const homeBtn = document.getElementById("home-btn");
+        const subtext = document.getElementById("subtext");
+
+        window.addEventListener("mousemove", (e) => {
+          const x = (e.clientX - window.innerWidth / 2) / 60;
+          const y = (e.clientY - window.innerHeight / 2) / 60;
+          gsap.to("#robot-head", { x: x * 2.5, y: y * 2.5, duration: 0.6 });
+          gsap.to("#orbits", { x: -x, y: -y, duration: 1 });
+        });
+
+        submitBtn.addEventListener("click", () => {
+          const email = document.getElementById("email-input").value;
+          if (!email.includes("@")) {
+            gsap.to(formContainer, {
+              x: 8,
+              repeat: 5,
+              yoyo: true,
+              duration: 0.05,
+              onComplete: () => gsap.set(formContainer, { x: 0 }),
+            });
+            return;
+          }
+
+          createBurst(submitBtn);
+
+          // Animate Out Form
+          gsap.to(formContainer, {
+            scale: 0,
+            opacity: 0,
+            duration: 0.4,
+            ease: "back.in(1.7)",
+            onComplete: () => {
+              formContainer.style.display = "none";
+              showHomeButton();
+            },
+          });
+
+          // Update Speech Bubble
+          setTimeout(() => {
+            const bubble2 = document.getElementById("bubble-2");
+            bubble2.innerText = "ACCESS GRANTED!";
+            bubble2.style.display = "block";
+            gsap.fromTo(
+              bubble2,
+              { scale: 0 },
+              { scale: 1.3, duration: 0.6, ease: "elastic.out(1, 0.4)" }
+            );
+          }, 500);
+
+          // Update Subtext
+          gsap.to(subtext, {
+            opacity: 0,
+            duration: 0.3,
+            onComplete: () => {
+              subtext.innerText =
+                "Welcome to the inner circle. The lab is almost ready.";
+              gsap.to(subtext, { opacity: 1, duration: 0.5 });
+            },
+          });
+        });
+
+        function showHomeButton() {
+          homeBtn.style.display = "inline-block";
+          gsap.fromTo(
+            homeBtn,
+            { scale: 0, opacity: 0, rotate: -10 },
+            {
+              scale: 1,
+              opacity: 1,
+              rotate: 0,
+              duration: 0.8,
+              ease: "back.out(2)",
+            }
+          );
+        }
+      }
+
+      function createBurst(el) {
+        const rect = el.getBoundingClientRect();
+        for (let i = 0; i < 12; i++) {
+          const star = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "svg"
+          );
+          star.setAttribute("viewBox", "0 0 40 40");
+          star.classList.add("pop-star");
+          star.innerHTML = `<path d="M20 0L24 16L40 20L24 24L20 40L16 24L0 20L16 16Z" fill="${
+            ["#ff6b35", "#ffd23f", "#4caf50", "#6b4ee6"][
+              Math.floor(Math.random() * 4)
+            ]
+          }" />`;
+          document.body.appendChild(star);
+          const angle = (i / 12) * Math.PI * 2;
+          const dist = 140 + Math.random() * 60;
+          gsap.set(star, {
+            x: rect.left + rect.width / 2 - 20,
+            y: rect.top + rect.height / 2 - 20,
+            scale: 0,
+          });
+          gsap.to(star, {
+            x: rect.left + rect.width / 2 - 20 + Math.cos(angle) * dist,
+            y: rect.top + rect.height / 2 - 20 + Math.sin(angle) * dist,
+            scale: Math.random() * 0.8 + 0.4,
+            opacity: 0,
+            rotate: 180,
+            duration: 1,
+            ease: "power3.out",
+            onComplete: () => star.remove(),
+          });
+        }
+      }
+    </script>
+  </body>
+</html>

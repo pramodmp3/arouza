@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us | AROUZA TECHLABS</title>
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="./contact.css" />
+  </head>
+  <body>
+    <nav class="comic-nav" id="mainNav">
+      <!-- Logo Section -->
+      <div class="nav-logo">
+        <a href="./index.html"
+          ><img src="./assets/logo.png" alt="AROUZA TECHLABS"
+        /></a>
+      </div>
+
+      <!-- Desktop Menu -->
+      <div class="nav-menu-wrapper">
+        <ul class="nav-desktop-list">
+          <li class="nav-item"><a href="./index.html">Home</a></li>
+          <li class="nav-item"><a href="./service.html">Services</a></li>
+          <li class="nav-item"><a href="./srusti.html">Srusti AI</a></li>
+          <li class="nav-item"><a href="./about.html">About</a></li>
+        </ul>
+        <a href="./contact.html" class="nav-cta-desktop">Contact</a>
+      </div>
+
+      <!-- Mobile Toggle (Burger) -->
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation">
+        <span class="burger-line line-1"></span>
+        <span class="burger-line line-2"></span>
+        <span class="burger-line line-3"></span>
+      </button>
+
+      <!-- FULL SCREEN Mobile Overlay -->
+      <div class="mobile-overlay" id="mobileOverlay">
+        <div class="mobile-panel" id="mobilePanel">
+          <a href="./index.html" class="mobile-link">Home</a>
+          <a href="./service.html" class="mobile-link">Services</a>
+          <a href="./srusti.html" class="mobile-link">Srusti AI</a>
+          <a href="./about.html" class="mobile-link">About</a>
+          <a href="./contact.html" class="mobile-link mobile-cta">Contact Us</a>
+        </div>
+      </div>
+    </nav>
+    <!-- MAIN FORM CARD -->
+    <div class="main-card">
+      <section class="visual-side" id="visualSide">
+        <div id="speechBubble" class="speech-bubble">Thank You!</div>
+        <div class="thank-you-msg" id="thankYouMsg">
+          <h2>Message Received!</h2>
+          <p>
+            The sprites are on it! <br /><span class="rainbow-text"
+              >AROUZA TECHLABS</span
+            ><br />will be in touch soon.
+          </p>
+        </div>
+        <div class="creature-group" id="creatureGroup">
+          <!-- Bird 1 (Green) -->
+          <svg id="c1" class="creature-svg bird" viewBox="0 0 200 200">
+            <circle class="body" cx="100" cy="110" r="80" fill="var(--green)" />
+            <g class="head-group">
+              <path
+                d="M50,80 L90,95"
+                stroke="var(--black)"
+                stroke-width="12"
+                stroke-linecap="round"
+              />
+              <path
+                d="M150,80 L110,95"
+                stroke="var(--black)"
+                stroke-width="12"
+                stroke-linecap="round"
+              />
+              <circle
+                cx="75"
+                cy="105"
+                r="15"
+                fill="white"
+                stroke="var(--black)"
+                stroke-width="3"
+              />
+              <circle
+                class="eye left"
+                cx="75"
+                cy="105"
+                r="6"
+                fill="var(--black)"
+              />
+              <circle
+                cx="125"
+                cy="105"
+                r="15"
+                fill="white"
+                stroke="var(--black)"
+                stroke-width="3"
+              />
+              <circle
+                class="eye right"
+                cx="125"
+                cy="105"
+                r="6"
+                fill="var(--black)"
+              />
+              <path
+                d="M90,120 L110,120 L100,145 Z"
+                fill="#FFD23F"
+                stroke="var(--black)"
+                stroke-width="4"
+              />
+            </g>
+          </svg>
+          <!-- Bird 2 (Red - Middle) -->
+          <svg id="c2" class="creature-svg middle bird" viewBox="0 0 200 200">
+            <circle class="body" cx="100" cy="100" r="90" fill="var(--red)" />
+            <g class="head-group">
+              <path
+                d="M50,70 L95,90"
+                stroke="var(--black)"
+                stroke-width="14"
+                stroke-linecap="round"
+              />
+              <path
+                d="M150,70 L105,90"
+                stroke="var(--black)"
+                stroke-width="14"
+                stroke-linecap="round"
+              />
+              <circle
+                cx="75"
+                cy="100"
+                r="16"
+                fill="white"
+                stroke="var(--black)"
+                stroke-width="4"
+              />
+              <circle
+                class="eye left"
+                cx="75"
+                cy="100"
+                r="7"
+                fill="var(--black)"
+              />
+              <circle
+                cx="125"
+                cy="100"
+                r="16"
+                fill="white"
+                stroke="var(--black)"
+                stroke-width="4"
+              />
+              <circle
+                class="eye right"
+                cx="125"
+                cy="100"
+                r="7"
+                fill="var(--black)"
+              />
+              <path
+                d="M85,115 L115,115 L100,150 Z"
+                fill="#FFD23F"
+                stroke="var(--black)"
+                stroke-width="4"
+              />
+            </g>
+          </svg>
+          <!-- Bird 3 (Yellow) -->
+          <svg id="c3" class="creature-svg bird" viewBox="0 0 200 200">
+            <path
+              class="body"
+              d="M100,20 L180,180 L20,180 Z"
+              fill="var(--yellow)"
+            />
+            <g class="head-group">
+              <line
+                x1="60"
+                y1="90"
+                x2="95"
+                y2="105"
+                stroke="var(--black)"
+                stroke-width="10"
+                stroke-linecap="round"
+              />
+              <line
+                x1="140"
+                y1="90"
+                x2="105"
+                y2="105"
+                stroke="var(--black)"
+                stroke-width="10"
+                stroke-linecap="round"
+              />
+              <circle
+                cx="80"
+                cy="115"
+                r="14"
+                fill="white"
+                stroke="var(--black)"
+                stroke-width="3"
+              />
+              <circle
+                class="eye left"
+                cx="80"
+                cy="115"
+                r="5"
+                fill="var(--black)"
+              />
+              <circle
+                cx="120"
+                cy="115"
+                r="14"
+                fill="white"
+                stroke="var(--black)"
+                stroke-width="3"
+              />
+              <circle
+                class="eye right"
+                cx="120"
+                cy="115"
+                r="5"
+                fill="var(--black)"
+              />
+              <path
+                d="M90,130 L130,140 L90,155 Z"
+                fill="#FF6B35"
+                stroke="var(--black)"
+                stroke-width="4"
+              />
+            </g>
+          </svg>
+        </div>
+      </section>
+
+      <section class="form-side" id="formSide">
+        <div class="form-container">
+          <div class="header-box">
+            <h1>Contact Us</h1>
+            <p>Send a message and our sprites will handle the rest.</p>
+          </div>
+          <form
+            class="contact-form"
+            id="contactForm"
+            action="https://formspree.io/f/mdaaokzj"
+            method="POST"
+          >
+            <div class="input-group">
+              <label>Full Name</label>
+              <input type="text" name="name" placeholder="Your Name" required />
+            </div>
+
+            <div class="input-group">
+              <label>Email Address</label>
+              <input
+                type="email"
+                name="email"
+                placeholder="email@example.com"
+                required
+              />
+            </div>
+
+            <div class="input-group">
+              <label>Inquiry</label>
+              <textarea
+                name="message"
+                rows="3"
+                placeholder="How can we help?"
+                required
+              ></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">
+              SEND MESSAGE
+            </button>
+          </form>
+        </div>
+      </section>
+    </div>
+
+    <!-- LOCATIONS GRID SECTION -->
+    <div class="locations-section">
+      <h3 class="section-title">Global Headquarters</h3>
+      <div class="locations-grid">
+        <div class="location-panel hq">
+          <div class="location-tag">Headquarters</div>
+          <div class="location-name">Bangalore</div>
+          <div class="location-desc">
+            Silicon Valley of India. Hub of innovation.
+          </div>
+          <div class="panel-decor">IN</div>
+        </div>
+        <div class="location-panel rd">
+          <div class="location-tag">R&D Lab</div>
+          <div class="location-name">Mysore</div>
+          <div class="location-desc">
+            Creative engineering and prototype lab.
+          </div>
+          <div class="panel-decor">RD</div>
+        </div>
+        <div class="location-panel">
+          <div class="location-tag">Global Sales</div>
+          <div class="location-name">UK</div>
+          <div class="location-desc">
+            Strategic partnerships and EU outreach.
+          </div>
+          <div class="panel-decor">UK</div>
+        </div>
+        <div class="location-panel">
+          <div class="location-tag">Engineering</div>
+          <div class="location-name">Russia</div>
+          <div class="location-desc">High-performance systems & security.</div>
+          <div class="panel-decor">RU</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAP SECTION -->
+    <div class="map-section">
+      <div class="map-card">
+        <div class="map-container">
+          <iframe
+            width="100%"
+            height="100%"
+            frameborder="0"
+            src="https://maps.google.com/maps?width=100%25&amp;height=400&amp;hl=en&amp;q=Basavanagudi,%20Bangalore&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+    <div class="footer-wrapper">
+      <footer class="comic-footer">
+        <!-- 1. BRAND PANEL -->
+        <section class="comic-panel brand-panel">
+          <div class="brand-logo"><img src="./assets/logo.png" alt="" /></div>
+          <!-- <h2 class="brand-name">Arouza Techlabs</h2> -->
+          <p class="brand-note">Engineering the future, frame by frame.</p>
+        </section>
+
+        <!-- 6. NEWSLETTER PANEL -->
+        <section class="comic-panel newsletter-panel">
+          <span class="panel-title">Join the Lab</span>
+          <p style="margin-bottom: 15px; font-weight: 500">
+            Get the latest tech blueprints in your inbox.
+          </p>
+          <form class="newsletter-form" onsubmit="return true;">
+            <input
+              type="email"
+              class="comic-input"
+              placeholder="Your Email Address"
+              required
+            />
+            <button type="submit" class="comic-btn">Subscribe</button>
+          </form>
+        </section>
+
+        <!-- 2. QUICK LINKS PANEL -->
+        <nav class="comic-panel links-panel">
+          <span class="panel-title">Navigation</span>
+          <ul class="links-list">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./service.html">Services</a></li>
+            <li><a href="./srusti.html">Srusti AI</a></li>
+            <li><a href="./about.html">About</a></li>
+            <li><a href="./contact.html">Contact</a></li>
+            <li><a href="./blog.html">Blog</a></li>
+          </ul>
+        </nav>
+
+        <!-- 3. LATEST NEWS PANEL -->
+        <section class="comic-panel news-panel">
+          <span class="panel-title">Dispatch</span>
+          <div class="news-item">
+            <div class="news-date">MAR 2024</div>
+            <div class="news-headline">Srusti AI reaches 2.0 stability.</div>
+          </div>
+          <div class="news-item">
+            <div class="news-date">FEB 2024</div>
+            <div class="news-headline">New HQ opened in Bangalore.</div>
+          </div>
+        </section>
+
+        <!-- 4. HQ ADDRESS PANEL -->
+        <section class="comic-panel address-panel">
+          <span class="panel-title">Headquarters</span>
+          <address>
+            Basavanagudi<br />
+            Bangalore, India<br />
+            Zip: 560004 <br />
+            Contact: +91 9538424583 <br />
+            E-mail: contact@arouza.com
+          </address>
+        </section>
+
+        <!-- 5. SOCIAL FOLLOW PANEL -->
+        <section class="comic-panel social-panel">
+          <span class="panel-title">Follow Us</span>
+
+          <div class="social-grid">
+            <a
+              href="https://www.instagram.com/arouzatechlabs/?igsh=YWdpbzFxY3Q4MTQ1#"
+            >
+              <div class="social-icon" title="Instagram">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M7.75 2h8.5C19.42 2 22 4.58 22 7.75v8.5C22 19.42 19.42 22 16.25 22h-8.5C4.58 22 2 19.42 2 16.25v-8.5C2 4.58 4.58 2 7.75 2zm0 1.5c-2.35 0-4.25 1.9-4.25 4.25v8.5c0 2.35 1.9 4.25 4.25 4.25h8.5c2.35 0 4.25-1.9 4.25-4.25v-8.5c0-2.35-1.9-4.25-4.25-4.25h-8.5zM12 7a5 5 0 110 10 5 5 0 010-10zm0 1.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm5.25-.75a1 1 0 110 2 1 1 0 010-2z"
+                  />
+                </svg></div
+            ></a>
+            <div class="social-icon" title="Twitter">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                />
+              </svg>
+            </div>
+            <a href="https://wa.me/919538424583">
+              <div class="social-icon" title="Facebook">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M20.52 3.48A11.82 11.82 0 0 0 12.02 0C5.4 0 .02 5.38.02 12c0 2.12.55 4.19 1.6 6.01L0 24l6.15-1.61A11.96 11.96 0 0 0 12.02 24C18.64 24 24 18.62 24 12c0-3.2-1.25-6.21-3.5-8.52zM12.02 21.8c-1.79 0-3.54-.48-5.07-1.38l-.36-.21-3.65.96.97-3.55-.23-.37A9.77 9.77 0 0 1 2.22 12c0-5.4 4.4-9.8 9.8-9.8 2.62 0 5.08 1.02 6.93 2.87A9.73 9.73 0 0 1 21.82 12c0 5.4-4.4 9.8-9.8 9.8zm5.38-7.35c-.29-.14-1.71-.84-1.97-.94-.26-.1-.45-.14-.64.14-.19.29-.74.94-.9 1.13-.17.19-.33.21-.62.07-.29-.14-1.22-.45-2.32-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.59.13-.13.29-.33.43-.5.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.5-.07-.14-.64-1.55-.88-2.13-.23-.55-.46-.48-.64-.49h-.55c-.19 0-.5.07-.76.36-.26.29-1 1-1 2.43s1.02 2.82 1.16 3.01c.14.19 2.01 3.07 4.87 4.31.68.29 1.21.46 1.62.59.68.22 1.3.19 1.79.11.55-.08 1.71-.7 1.95-1.38.24-.68.24-1.27.17-1.38-.07-.11-.26-.17-.55-.31z"
+                  />
+                </svg></div
+            ></a>
+            <a href="https://www.youtube.com/channel/UCFZDcQeOjnXeK9prqzjfxXQ">
+              <div class="social-icon" title="YouTube">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M21.58 7.19c-.23-.86-.91-1.54-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42c-.86.23-1.54.91-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.91 1.54 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42c.86-.23 1.54-.91 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81zM10 15V9l5.2 3-5.2 3z"
+                  />
+                </svg></div
+            ></a>
+            <a href="https://www.linkedin.com/company/arouzatechlab/">
+              <div class="social-icon" title="LinkedIn">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a2.7 2.7 0 0 0-2.7-2.7c-1.2 0-1.8.7-2.1 1.1v-.8h-3v7.7h3v-4.1c0-.2 0-.4.1-.6.2-.4.5-.8 1-.8.7 0 1 .5 1 1.3v4.2h3M7 18.5v-7.7h-3v7.7h3M5.5 9.2a1.6 1.6 0 0 0 1.6-1.6 1.6 1.6 0 0 0-3.2 0 1.6 1.6 0 0 0 1.6 1.6z"
+                  />
+                </svg></div
+            ></a>
+          </div>
+        </section>
+      </footer>
+
+      <div class="comic-divider"></div>
+
+      <div class="footer-bottom">
+        &copy; 2024 Arouza Techlabs. All Rights Reserved. Built for Impact.
+      </div>
+    </div>
+    <!-- <div class="footer-info">
+      <span>📍 Bangalore, India</span>
+      <span>© 2024 AROUZA TECHLABS</span>
+      <span>hello@arouza.tech</span>
+    </div> -->
+    <script src="./nav.js"></script>
+    <script src="./footer.js"></script>
+    <script>
+      const SOUNDS = {
+        click: new Audio("./assets/audio.m4a"),
+        fly: new Audio(
+          "https://assets.mixkit.co/active_storage/sfx/2048/2048-preview.mp3"
+        ),
+      };
+
+      const heads = document.querySelectorAll(".head-group");
+      const eyes = document.querySelectorAll(".eye");
+      const bodies = document.querySelectorAll(".body");
+      const birds = document.querySelectorAll(".creature-svg");
+      const speechBubble = document.getElementById("speechBubble");
+      let formSubmitted = false;
+      let bubbleTimeout;
+
+      // Floating animation for birds
+      bodies.forEach((b, i) => {
+        gsap.to(b, {
+          y: -12,
+          duration: 1.8 + i * 0.4,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+        });
+      });
+
+      // Periodic blink
+      function blink() {
+        if (formSubmitted) return;
+        gsap.to(".eye", {
+          scaleY: 0,
+          duration: 0.1,
+          repeat: 1,
+          yoyo: true,
+          transformOrigin: "center",
+          onComplete: () => setTimeout(blink, Math.random() * 5000 + 2000),
+        });
+      }
+      blink();
+
+      // Interactions
+      birds.forEach((bird) => {
+        bird.addEventListener("click", () => {
+          if (formSubmitted) return;
+          SOUNDS.click.play().catch(() => {});
+          gsap.fromTo(
+            bird,
+            { scale: 1 },
+            { scale: 1.15, duration: 0.1, yoyo: true, repeat: 1 }
+          );
+          clearTimeout(bubbleTimeout);
+          gsap.to(speechBubble, {
+            scale: 1,
+            duration: 0.4,
+            ease: "back.out(2)",
+            overwrite: "auto",
+          });
+          bubbleTimeout = setTimeout(() => {
+            gsap.to(speechBubble, { scale: 0, duration: 0.3 });
+          }, 2500);
+        });
+      });
+
+      // Mouse tracking
+      window.addEventListener("mousemove", (e) => {
+        if (formSubmitted) return;
+        const x = (e.clientX / window.innerWidth - 0.5) * 2;
+        const y = (e.clientY / window.innerHeight - 0.5) * 2;
+        heads.forEach((head, i) => {
+          gsap.to(head, {
+            x: x * (15 + i * 5),
+            y: y * 10,
+            duration: 0.6,
+            ease: "power2.out",
+          });
+        });
+        gsap.to(eyes, { x: x * 6, y: y * 4, duration: 0.3 });
+      });
+
+      document.getElementById("contactForm").addEventListener("submit", (e) => {
+        formSubmitted = true;
+
+        SOUNDS.fly.play().catch(() => {});
+
+        const btn = document.getElementById("submitBtn");
+        btn.innerText = "BAM! SENT!";
+        btn.style.background = "var(--green)";
+
+        birds.forEach((bird, i) => {
+          const tl = gsap.timeline({ delay: i * 0.1 });
+          tl.to(bird, {
+            y: -1000,
+            x: (i - 1) * 500,
+            rotation: (i - 1) * 45,
+            duration: 1.5,
+            ease: "power2.in",
+          });
+        });
+
+        gsap.to("#formSide", { opacity: 0.1, scale: 0.95, duration: 0.8 });
+        gsap.set("#thankYouMsg", { visibility: "visible" });
+        gsap.to("#thankYouMsg", {
+          opacity: 1,
+          y: -10,
+          duration: 1.2,
+          delay: 0.5,
+          ease: "back.out(1.7)",
+        });
+
+        // ⏳ allow Formspree to submit
+        setTimeout(() => {
+          e.target.submit();
+        }, 600);
+      });
+    </script>
+  </body>
+</html>

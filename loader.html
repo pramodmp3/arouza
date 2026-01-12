@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arouza Techlabs - Simple Comic Loader</title>
+    <style>
+      :root {
+        --comic-yellow: #ffd700;
+        --comic-black: #000000;
+        --comic-white: #ffffff;
+      }
+
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--comic-white);
+        font-family: "Arial Black", sans-serif;
+        overflow: hidden;
+      }
+
+      /* Container for the bubble */
+      .loader-wrapper {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      /* Simple Comic Speech/Action Bubble */
+      .comic-bubble {
+        position: relative;
+        background: var(--comic-yellow);
+        border: 6px solid var(--comic-black);
+        padding: 30px 50px;
+        transform: skew(-5deg);
+        box-shadow: 12px 12px 0px var(--comic-black);
+        animation: pop-in 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) infinite
+          alternate;
+      }
+
+      /* The "Tail" of the bubble */
+      .comic-bubble::after {
+        content: "";
+        position: absolute;
+        bottom: -30px;
+        left: 20%;
+        width: 0;
+        height: 0;
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+        border-top: 30px solid var(--comic-black);
+      }
+
+      /* Halftone Dot Overlay */
+      .halftone {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: radial-gradient(
+          var(--comic-black) 1px,
+          transparent 1px
+        );
+        background-size: 6px 6px;
+        opacity: 0.1;
+        pointer-events: none;
+      }
+
+      /* Brand Text Styling */
+      .brand-text {
+        color: var(--comic-black);
+        text-transform: uppercase;
+        font-size: 2.5rem;
+        font-weight: 900;
+        letter-spacing: -2px;
+        text-align: center;
+        line-height: 1;
+      }
+
+      .brand-sub {
+        display: block;
+        font-size: 1.2rem;
+        margin-top: 4px;
+        background: var(--comic-black);
+        color: var(--comic-yellow);
+        padding: 2px 8px;
+        transform: skew(5deg);
+      }
+
+      /* Modern loading indicator line */
+      .loader-bar {
+        margin-top: 60px;
+        width: 180px;
+        height: 10px;
+        background: #eee;
+        border: 3px solid var(--comic-black);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .loader-fill {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 40%;
+        background: var(--comic-black);
+        animation: slide 1.2s infinite ease-in-out;
+      }
+
+      /* Animations */
+      @keyframes pop-in {
+        from {
+          transform: skew(-5deg) scale(0.95);
+        }
+        to {
+          transform: skew(-5deg) scale(1.05);
+        }
+      }
+
+      @keyframes slide {
+        0% {
+          left: -50%;
+          width: 30%;
+        }
+        50% {
+          width: 60%;
+        }
+        100% {
+          left: 110%;
+          width: 30%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="loader-wrapper">
+      <div class="comic-bubble">
+        <div class="halftone"></div>
+        <div class="brand-text">
+          AROUZA
+          <span class="brand-sub">TECHLABS</span>
+        </div>
+      </div>
+
+      <!-- Minimal Loading Bar -->
+      <div class="loader-bar">
+        <div class="loader-fill"></div>
+      </div>
+    </div>
+  </body>
+</html>

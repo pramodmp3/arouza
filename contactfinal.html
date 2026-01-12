@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us | AROUZA TECHLABS</title>
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+      :root {
+        --orange: #ff6b35;
+        --purple: #6b4ee6;
+        --yellow: #ffd23f;
+        --green: #4caf50;
+        --red: #e91e63;
+        --black: #1a1a1a;
+        --white: #ffffff;
+        --bg-page: #f0f2f9;
+        --bg-visual: linear-gradient(135deg, #4a32a8 0%, #6b4ee6 100%);
+        --gray-light: #e0e0e0;
+        --gray-text: #666677;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, sans-serif;
+      }
+
+      body {
+        background-color: var(--bg-page);
+        color: var(--black);
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 0;
+      }
+
+      /* MAIN CARD */
+      .main-card {
+        display: flex;
+        width: 95vw;
+        max-width: 1100px;
+        height: 600px;
+        background: var(--white);
+        border-radius: 32px;
+        overflow: hidden;
+        box-shadow: 0 40px 100px rgba(0, 0, 0, 0.08);
+        margin-bottom: 40px;
+      }
+
+      /* LEFT SQUARE: SPRITES */
+      .visual-side {
+        flex: 1;
+        background: var(--bg-visual);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        padding: 40px;
+        overflow: hidden;
+      }
+
+      .visual-side::before {
+        content: "";
+        position: absolute;
+        width: 150%;
+        height: 150%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.1) 0%,
+          transparent 70%
+        );
+        top: -25%;
+        left: -25%;
+      }
+
+      .creature-group {
+        position: relative;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        z-index: 1;
+      }
+
+      /* Speech Bubble */
+      .speech-bubble {
+        position: absolute;
+        background: white;
+        padding: 12px 20px;
+        border-radius: 20px;
+        font-weight: 700;
+        font-size: 0.85rem;
+        color: var(--black);
+        bottom: 80%;
+        left: 50%;
+        transform: translateX(-50%) scale(0);
+        white-space: nowrap;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        z-index: 10;
+        pointer-events: none;
+      }
+
+      .speech-bubble::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -10px;
+        border-width: 10px;
+        border-style: solid;
+        border-color: white transparent transparent transparent;
+      }
+
+      /* Thank You Message */
+      .thank-you-msg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        text-align: center;
+        width: 85%;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 5;
+      }
+
+      .thank-you-msg h2 {
+        font-size: 2.8rem;
+        font-weight: 900;
+        margin-bottom: 15px;
+        line-height: 1.1;
+        text-transform: uppercase;
+      }
+
+      .rainbow-text {
+        background: linear-gradient(
+          to right,
+          #ff0000,
+          #ff7f00,
+          #ffff00,
+          #00ff00,
+          #0000ff,
+          #4b0082,
+          #8b00ff
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 200% auto;
+        animation: rainbow 3s linear infinite;
+        display: inline-block;
+        font-weight: 900;
+      }
+
+      @keyframes rainbow {
+        to {
+          background-position: 200% center;
+        }
+      }
+
+      .thank-you-msg p {
+        font-size: 1.1rem;
+        opacity: 0.9;
+        line-height: 1.5;
+      }
+
+      .creature-svg {
+        width: 33%;
+        height: auto;
+        margin: 0 -2%;
+        filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.2));
+        z-index: 1;
+        overflow: visible;
+        cursor: pointer;
+        transition: filter 0.3s;
+      }
+
+      .creature-svg:hover {
+        filter: drop-shadow(0 25px 35px rgba(0, 0, 0, 0.3));
+      }
+
+      .creature-svg.middle {
+        z-index: 2;
+        width: 40%;
+      }
+
+      /* RIGHT SQUARE: FORM */
+      .form-side {
+        flex: 1;
+        padding: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        transition: opacity 0.5s ease;
+      }
+
+      .header-box {
+        margin-bottom: 30px;
+      }
+
+      .header-box h1 {
+        font-size: 2rem;
+        font-weight: 900;
+        letter-spacing: -1px;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+
+      .header-box p {
+        color: var(--gray-text);
+        font-size: 0.95rem;
+        line-height: 1.4;
+      }
+
+      .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .input-group {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .input-group label {
+        font-size: 0.65rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        margin-bottom: 6px;
+        color: #999;
+      }
+
+      .input-group input,
+      .input-group textarea {
+        border: none;
+        border-bottom: 2px solid var(--gray-light);
+        padding: 10px 0;
+        font-size: 0.95rem;
+        background: transparent;
+        outline: none;
+        transition: border-color 0.3s;
+      }
+
+      .input-group input:focus,
+      .input-group textarea:focus {
+        border-bottom-color: var(--purple);
+      }
+
+      .submit-btn {
+        background: var(--black);
+        color: white;
+        border: none;
+        padding: 16px;
+        font-size: 0.9rem;
+        font-weight: 800;
+        letter-spacing: 1px;
+        cursor: pointer;
+        margin-top: 10px;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+      }
+
+      .submit-btn:hover {
+        background: var(--purple);
+      }
+
+      /* SEPARATE MAP SECTION */
+      .map-section {
+        width: 95vw;
+        max-width: 1100px;
+        margin-bottom: 60px;
+      }
+
+      .map-card {
+        width: 100%;
+        height: 400px;
+        background: var(--white);
+        border-radius: 32px;
+        padding: 15px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05);
+      }
+
+      .map-container {
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
+        overflow: hidden;
+        filter: grayscale(1);
+        transition: filter 0.5s ease;
+      }
+
+      .map-container:hover {
+        filter: grayscale(0.2);
+      }
+
+      .footer-info {
+        width: 100%;
+        max-width: 1100px;
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 10px;
+        font-size: 0.8rem;
+        color: #999;
+        border-top: 1px solid #e0e4f0;
+      }
+
+      @media (max-width: 900px) {
+        .main-card {
+          flex-direction: column;
+          height: auto;
+        }
+        .visual-side {
+          min-height: 400px;
+        }
+        .form-side {
+          padding: 40px 30px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-card">
+      <section class="visual-side" id="visualSide">
+        <div id="speechBubble" class="speech-bubble">
+          Fill the form and submit! Thank you!
+        </div>
+
+        <div class="thank-you-msg" id="thankYouMsg">
+          <h2>Thank You!</h2>
+          <p>
+            For contacting <br /><span class="rainbow-text"
+              >AROUZA TECHLABS</span
+            >.<br />Our team will get back to you soon.
+          </p>
+        </div>
+
+        <div class="creature-group" id="creatureGroup">
+          <!-- 1. GREEN -->
+          <svg id="c1" class="creature-svg bird" viewBox="0 0 200 200">
+            <circle class="body" cx="100" cy="110" r="80" fill="var(--green)" />
+            <circle cx="100" cy="140" r="50" fill="rgba(255,255,255,0.1)" />
+            <g class="head-group">
+              <path
+                class="brow"
+                d="M50,80 L90,95"
+                stroke="var(--black)"
+                stroke-width="8"
+                stroke-linecap="round"
+              />
+              <path
+                class="brow"
+                d="M150,80 L110,95"
+                stroke="var(--black)"
+                stroke-width="8"
+                stroke-linecap="round"
+              />
+              <circle class="eye-bg" cx="75" cy="105" r="15" fill="white" />
+              <circle
+                class="eye left"
+                cx="75"
+                cy="105"
+                r="6"
+                fill="var(--black)"
+              />
+              <circle class="eye-bg" cx="125" cy="105" r="15" fill="white" />
+              <circle
+                class="eye right"
+                cx="125"
+                cy="105"
+                r="6"
+                fill="var(--black)"
+              />
+              <path
+                class="beak"
+                d="M90,120 L110,120 L100,145 Z"
+                fill="#FFD23F"
+                stroke="var(--black)"
+                stroke-width="2"
+              />
+            </g>
+          </svg>
+
+          <!-- 2. RED (Center) -->
+          <svg id="c2" class="creature-svg middle bird" viewBox="0 0 200 200">
+            <circle class="body" cx="100" cy="100" r="90" fill="var(--red)" />
+            <ellipse cx="100" cy="150" rx="65" ry="30" fill="#FFCCD5" />
+            <g class="head-group">
+              <path
+                class="brow"
+                d="M50,70 L95,90"
+                stroke="var(--black)"
+                stroke-width="10"
+                stroke-linecap="round"
+              />
+              <path
+                class="brow"
+                d="M150,70 L105,90"
+                stroke="var(--black)"
+                stroke-width="10"
+                stroke-linecap="round"
+              />
+              <circle class="eye-bg" cx="75" cy="100" r="16" fill="white" />
+              <circle
+                class="eye left"
+                cx="75"
+                cy="100"
+                r="7"
+                fill="var(--black)"
+              />
+              <circle class="eye-bg" cx="125" cy="100" r="16" fill="white" />
+              <circle
+                class="eye right"
+                cx="125"
+                cy="100"
+                r="7"
+                fill="var(--black)"
+              />
+              <path
+                class="beak"
+                d="M85,115 L115,115 L100,150 Z"
+                fill="#FFD23F"
+                stroke="var(--black)"
+                stroke-width="2"
+              />
+            </g>
+          </svg>
+
+          <!-- 3. YELLOW -->
+          <svg id="c3" class="creature-svg bird" viewBox="0 0 200 200">
+            <path
+              class="body"
+              d="M100,20 L180,180 L20,180 Z"
+              fill="var(--yellow)"
+            />
+            <g class="head-group">
+              <line
+                class="brow"
+                x1="60"
+                y1="90"
+                x2="95"
+                y2="105"
+                stroke="var(--black)"
+                stroke-width="7"
+                stroke-linecap="round"
+              />
+              <line
+                class="brow"
+                x1="140"
+                y1="90"
+                x2="105"
+                y2="105"
+                stroke="var(--black)"
+                stroke-width="7"
+                stroke-linecap="round"
+              />
+              <circle class="eye-bg" cx="80" cy="115" r="14" fill="white" />
+              <circle
+                class="eye left"
+                cx="80"
+                cy="115"
+                r="5"
+                fill="var(--black)"
+              />
+              <circle class="eye-bg" cx="120" cy="115" r="14" fill="white" />
+              <circle
+                class="eye right"
+                cx="120"
+                cy="115"
+                r="5"
+                fill="var(--black)"
+              />
+              <path
+                class="beak"
+                d="M90,130 L130,140 L90,155 Z"
+                fill="#FF6B35"
+                stroke="var(--black)"
+                stroke-width="2"
+              />
+            </g>
+          </svg>
+        </div>
+      </section>
+
+      <section class="form-side" id="formSide">
+        <div class="header-box">
+          <h1>Contact Us</h1>
+          <p>Send a message and our sprites will handle the rest.</p>
+        </div>
+
+        <form class="contact-form" id="contactForm">
+          <div class="input-group">
+            <label>Full Name</label>
+            <input type="text" placeholder="Your Name" required />
+          </div>
+          <div class="input-group">
+            <label>Email Address</label>
+            <input type="email" placeholder="email@example.com" required />
+          </div>
+          <div class="input-group">
+            <label>Inquiry</label>
+            <textarea rows="3" placeholder="How can we help?"></textarea>
+          </div>
+          <button type="submit" class="submit-btn" id="submitBtn">
+            SEND MESSAGE
+          </button>
+        </form>
+      </section>
+    </div>
+
+    <div class="map-section">
+      <div class="map-card">
+        <div class="map-container">
+          <iframe
+            width="100%"
+            height="100%"
+            frameborder="0"
+            scrolling="no"
+            src="https://maps.google.com/maps?width=100%25&amp;height=400&amp;hl=en&amp;q=Basavanagudi,%20Bangalore&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+          >
+          </iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-info">
+      <span>📍 Bangalore, India</span>
+      <span>© 2024 AROUZA TECHLABS</span>
+      <span>hello@arouza.tech</span>
+    </div>
+
+    <script>
+      // --- SOUND CONFIGURATION ---
+      // Replace these URLs with your actual sound file paths
+      const SOUNDS = {
+        click: new Audio("./assets/audio.m4a"), // Pop sound
+        fly: new Audio(
+          "https://assets.mixkit.co/active_storage/sfx/2048/2048-preview.mp3"
+        ), // Swoosh sound
+      };
+
+      // Preload sounds
+      Object.values(SOUNDS).forEach((audio) => {
+        audio.load();
+        audio.volume = 0.5;
+      });
+
+      const heads = document.querySelectorAll(".head-group");
+      const eyes = document.querySelectorAll(".eye");
+      const bodies = document.querySelectorAll(".body");
+      const birds = document.querySelectorAll(".creature-svg");
+      const speechBubble = document.getElementById("speechBubble");
+      let formSubmitted = false;
+      let bubbleTimeout;
+
+      // Idle floating animation
+      bodies.forEach((b, i) => {
+        gsap.to(b, {
+          y: -12,
+          duration: 1.8 + i * 0.4,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+        });
+      });
+
+      function blink() {
+        if (formSubmitted) return;
+        gsap.to(".eye, .eye-bg", {
+          scaleY: 0,
+          duration: 0.1,
+          repeat: 1,
+          yoyo: true,
+          transformOrigin: "center",
+          onComplete: () => setTimeout(blink, Math.random() * 5000 + 2000),
+        });
+      }
+      blink();
+
+      // Bird Interaction (Click)
+      birds.forEach((bird) => {
+        bird.addEventListener("click", (e) => {
+          if (formSubmitted) return;
+
+          // Play click sound
+          SOUNDS.click.currentTime = 0;
+          SOUNDS.click
+            .play()
+            .catch((e) =>
+              console.log(
+                "Audio play blocked by browser. Interaction required."
+              )
+            );
+
+          // Animate bird scale on click
+          gsap.fromTo(
+            bird,
+            { scale: 1 },
+            { scale: 1.1, duration: 0.1, yoyo: true, repeat: 1 }
+          );
+
+          // Show Speech Bubble
+          clearTimeout(bubbleTimeout);
+          gsap.to(speechBubble, {
+            scale: 1,
+            duration: 0.4,
+            ease: "back.out(1.7)",
+            overwrite: "auto",
+          });
+
+          // Hide after 2 seconds
+          bubbleTimeout = setTimeout(() => {
+            gsap.to(speechBubble, {
+              scale: 0,
+              duration: 0.3,
+              ease: "power2.in",
+            });
+          }, 2000);
+        });
+      });
+
+      window.addEventListener("mousemove", (e) => {
+        if (formSubmitted) return;
+        const x = (e.clientX / window.innerWidth - 0.5) * 2;
+        const y = (e.clientY / window.innerHeight - 0.5) * 2;
+
+        heads.forEach((head, i) => {
+          const depth = 15 + i * 5;
+          gsap.to(head, {
+            x: x * depth,
+            y: y * (depth / 2),
+            duration: 0.6,
+            ease: "power2.out",
+          });
+        });
+
+        gsap.to(eyes, { x: x * 6, y: y * 4, duration: 0.3 });
+      });
+
+      document.getElementById("contactForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        if (formSubmitted) return;
+        formSubmitted = true;
+
+        const btn = document.getElementById("submitBtn");
+        const formSide = document.getElementById("formSide");
+        const thankYouMsg = document.getElementById("thankYouMsg");
+
+        // Play flying sound
+        SOUNDS.fly.currentTime = 0;
+        SOUNDS.fly.play().catch((e) => console.log("Audio play blocked"));
+
+        // Hide bubble immediately
+        gsap.to(speechBubble, { scale: 0, duration: 0.2 });
+
+        btn.innerText = "SENT!";
+        btn.style.background = "var(--green)";
+
+        // Flying departure logic
+        const flightPaths = [
+          { x: -800, y: -200, rotate: -30 },
+          { x: 200, y: -900, rotate: 10 },
+          { x: 900, y: -300, rotate: 30 },
+        ];
+
+        birds.forEach((bird, i) => {
+          const tl = gsap.timeline({ delay: i * 0.15 });
+
+          tl.to(bird, { scaleY: 0.8, y: 10, duration: 0.2 }).to(bird, {
+            scaleY: 1.1,
+            y: -20,
+            duration: 0.2,
+          });
+
+          tl.to(
+            bird,
+            {
+              x: flightPaths[i].x,
+              y: flightPaths[i].y,
+              rotation: flightPaths[i].rotate,
+              duration: 1.5,
+              ease: "power2.in",
+            },
+            "-=0.1"
+          );
+
+          gsap.to(bird, {
+            scaleX: 0.85,
+            scaleY: 1.15,
+            duration: 0.15,
+            repeat: 8,
+            yoyo: true,
+            ease: "sine.inOut",
+          });
+        });
+
+        gsap.to(formSide, {
+          opacity: 0.3,
+          duration: 0.8,
+          pointerEvents: "none",
+        });
+
+        gsap.set(thankYouMsg, { visibility: "visible" });
+        gsap.to(thankYouMsg, {
+          opacity: 1,
+          y: -10,
+          duration: 1.2,
+          delay: 1,
+          ease: "power3.out",
+        });
+      });
+    </script>
+  </body>
+</html>

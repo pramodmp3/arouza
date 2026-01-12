@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SRUSTI AI | A Smart Friend for Curious Minds</title>
+    <!-- GSAP for Professional Motion Design -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <link rel="stylesheet" href="./srusti.css" />
+  </head>
+  <body>
+    <nav class="comic-nav" id="mainNav">
+      <!-- Logo Section -->
+      <div class="nav-logo">
+        <a href="./index.html"
+          ><img src="./assets/logo.png" alt="AROUZA TECHLABS"
+        /></a>
+      </div>
+
+      <!-- Desktop Menu -->
+      <div class="nav-menu-wrapper">
+        <ul class="nav-desktop-list">
+          <li class="nav-item"><a href="./index.html">Home</a></li>
+          <li class="nav-item"><a href="./service.html">Services</a></li>
+          <li class="nav-item"><a href="./srusti.html">Srusti AI</a></li>
+          <li class="nav-item"><a href="./about.html">About</a></li>
+        </ul>
+        <a href="./contact.html" class="nav-cta-desktop">Contact</a>
+      </div>
+
+      <!-- Mobile Toggle (Burger) -->
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation">
+        <span class="burger-line line-1"></span>
+        <span class="burger-line line-2"></span>
+        <span class="burger-line line-3"></span>
+      </button>
+
+      <!-- FULL SCREEN Mobile Overlay -->
+      <div class="mobile-overlay" id="mobileOverlay">
+        <div class="mobile-panel" id="mobilePanel">
+          <a href="./index.html" class="mobile-link">Home</a>
+          <a href="./service.html" class="mobile-link">Services</a>
+          <a href="./srusti.html" class="mobile-link">Srusti AI</a>
+          <a href="./about.html" class="mobile-link">About</a>
+          <a href="./contact.html" class="mobile-link mobile-cta">Contact Us</a>
+        </div>
+      </div>
+    </nav>
+    <!-- HERO SECTION (BLUE BG) -->
+    <section class="hero comic-sky-bg">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-text">
+            <h1 class="hero-title">SRUSTI AI</h1>
+            <div class="hero-tagline">More Than Just a Toy</div>
+            <p class="hero-description">
+              The friendly AI companion designed to spark curiosity and keep
+              kids engaged in the real world—without the smartphone addiction.
+            </p>
+            <button class="btn-comic" id="heroBtn">
+              Meet Srusti
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+          </div>
+
+          <div class="hero-visual">
+            <div class="robot-canvas" id="robotHero">
+              <svg viewBox="0 0 240 280" xmlns="http://www.w3.org/2000/svg">
+                <ellipse
+                  cx="120"
+                  cy="260"
+                  rx="70"
+                  ry="15"
+                  fill="rgba(0,0,0,0.1)"
+                />
+                <g id="mainBot">
+                  <line
+                    x1="120"
+                    y1="50"
+                    x2="120"
+                    y2="20"
+                    stroke="var(--black)"
+                    stroke-width="5"
+                  />
+                  <circle
+                    cx="120"
+                    cy="15"
+                    r="8"
+                    class="st3"
+                    stroke="var(--black)"
+                    stroke-width="3"
+                  />
+                  <rect
+                    x="30"
+                    y="90"
+                    width="20"
+                    height="40"
+                    rx="10"
+                    class="st1"
+                    stroke="var(--black)"
+                    stroke-width="4"
+                  />
+                  <rect
+                    x="190"
+                    y="90"
+                    width="20"
+                    height="40"
+                    rx="10"
+                    class="st1"
+                    stroke="var(--black)"
+                    stroke-width="4"
+                  />
+                  <rect
+                    x="50"
+                    y="50"
+                    width="140"
+                    height="110"
+                    rx="30"
+                    class="st0"
+                  />
+                  <rect
+                    x="65"
+                    y="65"
+                    width="110"
+                    height="80"
+                    rx="20"
+                    class="st2"
+                  />
+                  <g id="face">
+                    <circle id="leftEye" cx="95" cy="100" r="10" class="st3" />
+                    <circle
+                      id="rightEye"
+                      cx="135"
+                      cy="100"
+                      r="10"
+                      class="st3"
+                    />
+                    <path
+                      id="mouth"
+                      d="M100 125 Q115 135 130 125"
+                      stroke="var(--yellow)"
+                      stroke-width="4"
+                      fill="none"
+                      stroke-linecap="round"
+                    />
+                  </g>
+                  <path
+                    d="M70 160 L170 160 L185 240 Q185 255 170 255 L70 255 Q55 255 55 240 Z"
+                    class="st0"
+                  />
+                  <circle
+                    cx="120"
+                    cy="205"
+                    r="18"
+                    fill="var(--orange)"
+                    stroke="var(--black)"
+                    stroke-width="4"
+                  />
+                  <circle cx="120" cy="205" r="6" fill="var(--white)" />
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE PROBLEM -->
+    <section class="story-section">
+      <div class="container">
+        <div class="story-grid">
+          <div class="story-content reveal-left">
+            <h2 style="color: var(--red)">The Scrolling Trap</h2>
+            <p style="font-size: 1.3rem; margin-bottom: 20px; font-weight: 700">
+              Is your child's curiosity being silenced by a screen?
+            </p>
+            <p>
+              Smartphones are built to keep us scrolling. For children, this
+              means less time asking questions, less time exploring, and more
+              time in "autopilot." Srusti AI replaces mindless consumption with
+              active conversation.
+            </p>
+          </div>
+          <div class="comic-border reveal-right">
+            <div class="story-visual-container">
+              <svg width="200" height="200" viewBox="0 0 100 100">
+                <rect
+                  x="30"
+                  y="10"
+                  width="40"
+                  height="80"
+                  rx="5"
+                  fill="#333"
+                  stroke="var(--black)"
+                  stroke-width="3"
+                />
+                <path
+                  d="M35 25 H65 M35 35 H65 M35 45 H65"
+                  stroke="var(--red)"
+                  stroke-width="2"
+                />
+                <circle cx="50" cy="80" r="3" fill="var(--white)" />
+                <path
+                  d="M10 50 L90 50 M50 10 L50 90"
+                  stroke="var(--red)"
+                  stroke-width="8"
+                  stroke-opacity="0.2"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="section-padding features">
+      <div class="container">
+        <h2 style="text-align: center; margin-bottom: 50px">
+          Why Parents & Kids Love Srusti
+        </h2>
+        <div class="feature-cards">
+          <div class="feature-item comic-border reveal-up">
+            <div
+              style="
+                background: var(--yellow);
+                width: 60px;
+                height: 60px;
+                border-radius: 12px;
+                margin: 0 auto;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 3px solid var(--black);
+              "
+            >
+              <svg
+                width="30"
+                height="30"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="3"
+              >
+                <path
+                  d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"
+                ></path>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+              </svg>
+            </div>
+            <h3>Voice Active</h3>
+            <p>
+              No typing. Just talking. Srusti understands natural speech like a
+              best friend.
+            </p>
+          </div>
+          <div
+            class="feature-item comic-border reveal-up"
+            style="transition-delay: 0.1s"
+          >
+            <div
+              style="
+                background: var(--green);
+                width: 60px;
+                height: 60px;
+                border-radius: 12px;
+                margin: 0 auto;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 3px solid var(--black);
+              "
+            >
+              <svg
+                width="30"
+                height="30"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="3"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <h3>100% Safe</h3>
+            <p>
+              Filtered for child-safety. Srusti only discusses age-appropriate
+              topics.
+            </p>
+          </div>
+          <div
+            class="feature-item comic-border reveal-up"
+            style="transition-delay: 0.2s"
+          >
+            <div
+              style="
+                background: var(--orange);
+                width: 60px;
+                height: 60px;
+                border-radius: 12px;
+                margin: 0 auto;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 3px solid var(--black);
+              "
+            >
+              <svg
+                width="30"
+                height="30"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="3"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+            </div>
+            <h3>Infinity IQ</h3>
+            <p>
+              From "How do planes fly?" to "Why is grass green?", Srusti knows.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section
+      class="section-padding"
+      style="
+        background: var(--white);
+        border-top: var(--stroke) solid var(--black);
+      "
+    >
+      <div class="container">
+        <h2 style="text-align: center">How It Works</h2>
+        <div class="step-list">
+          <div class="step-box comic-border reveal-left">
+            <span class="step-num">01</span>
+            <div>
+              <h3>Say "Hey Srusti"</h3>
+              <p>
+                The robot wakes up instantly, ready to listen to your child's
+                curiosity.
+              </p>
+            </div>
+          </div>
+          <div
+            class="step-box comic-border reveal-right"
+            style="background: var(--bg-page)"
+          >
+            <span class="step-num">02</span>
+            <div>
+              <h3>Ask Anything</h3>
+              <p>
+                "Srusti, why is the moon following us?" or "Tell me a story
+                about a brave cat."
+              </p>
+            </div>
+          </div>
+          <div class="step-box comic-border reveal-left">
+            <span class="step-num">03</span>
+            <div>
+              <h3>Learn & Grow</h3>
+              <p>
+                Srusti responds with warm voice and simple text on its facial
+                display.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA SECTION (MATCHING BLUE BG) -->
+    <section class="cta-box comic-sky-bg">
+      <div class="container">
+        <h2 class="reveal-up">Ready to start the journey?</h2>
+        <p class="cta-description reveal-up">
+          Give your child a companion that helps them think, not just blink.
+        </p>
+        <div class="reveal-up">
+          <a href="./comingsoon.html"
+            ><button
+              class="btn-comic"
+              id="finalCTA"
+              style="
+                background: var(--yellow);
+                color: var(--black);
+                min-width: 280px;
+              "
+            >
+              Adopt Srusti Today
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg></button
+          ></a>
+        </div>
+        <!-- <div class="cta-footer-text reveal-up">AROUZA TECHLABS © 2024</div> -->
+      </div>
+    </section>
+    <div class="footer-wrapper">
+      <footer class="comic-footer">
+        <!-- 1. BRAND PANEL -->
+        <section class="comic-panel brand-panel">
+          <div class="brand-logo">
+            <img src="./assets/logo.png" alt="logo" />
+          </div>
+          <!-- <h2 class="brand-name">Arouza Techlabs</h2> -->
+          <p class="brand-note">Engineering the future, frame by frame.</p>
+        </section>
+
+        <!-- 6. NEWSLETTER PANEL -->
+        <section class="comic-panel newsletter-panel">
+          <span class="panel-title">Join the Lab</span>
+          <p style="margin-bottom: 15px; font-weight: 500">
+            Get the latest tech blueprints in your inbox.
+          </p>
+          <form class="newsletter-form" onsubmit="return true;">
+            <input
+              type="email"
+              class="comic-input"
+              placeholder="Your Email Address"
+              required
+            />
+            <button type="submit" class="comic-btn">Subscribe</button>
+          </form>
+        </section>
+
+        <!-- 2. QUICK LINKS PANEL -->
+        <nav class="comic-panel links-panel">
+          <span class="panel-title">Navigation</span>
+          <ul class="links-list">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./service.html">Services</a></li>
+            <li><a href="./srusti.html">Srusti AI</a></li>
+            <li><a href="./about.html">About</a></li>
+            <li><a href="./contact.html">Contact</a></li>
+            <li><a href="./blog.html">Blog</a></li>
+          </ul>
+        </nav>
+
+        <!-- 3. LATEST NEWS PANEL -->
+        <section class="comic-panel news-panel">
+          <span class="panel-title">Dispatch</span>
+          <div class="news-item">
+            <div class="news-date">MAR 2024</div>
+            <div class="news-headline">Srusti AI reaches 2.0 stability.</div>
+          </div>
+          <div class="news-item">
+            <div class="news-date">FEB 2024</div>
+            <div class="news-headline">New HQ opened in Bangalore.</div>
+          </div>
+        </section>
+
+        <!-- 4. HQ ADDRESS PANEL -->
+        <section class="comic-panel address-panel">
+          <span class="panel-title">Headquarters</span>
+          <address>
+            Basavanagudi<br />
+            Bangalore, India<br />
+            Zip: 560004 <br />
+            Contact: +91 9538424583 <br />
+            E-mail: contact@arouza.com
+          </address>
+        </section>
+
+        <!-- 5. SOCIAL FOLLOW PANEL -->
+        <section class="comic-panel social-panel">
+          <span class="panel-title">Follow Us</span>
+           <a href="https://www.instagram.com/arouzatechlabs/?igsh=YWdpbzFxY3Q4MTQ1#">
+          <div class="social-grid">
+            <div class="social-icon" title="Instagram">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M7.75 2h8.5C19.42 2 22 4.58 22 7.75v8.5C22 19.42 19.42 22 16.25 22h-8.5C4.58 22 2 19.42 2 16.25v-8.5C2 4.58 4.58 2 7.75 2zm0 1.5c-2.35 0-4.25 1.9-4.25 4.25v8.5c0 2.35 1.9 4.25 4.25 4.25h8.5c2.35 0 4.25-1.9 4.25-4.25v-8.5c0-2.35-1.9-4.25-4.25-4.25h-8.5zM12 7a5 5 0 110 10 5 5 0 010-10zm0 1.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm5.25-.75a1 1 0 110 2 1 1 0 010-2z"
+                />
+              </svg>
+            </div></a>
+
+            <div class="social-icon" title="Twitter">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                />
+              </svg>
+            </div>
+           <a href="https://wa.me/919538424583"> <div class="social-icon" title="Facebook">
+              <svg viewBox="0 0 24 24">
+  <path
+    d="M20.52 3.48A11.82 11.82 0 0 0 12.02 0C5.4 0 .02 5.38.02 12c0 2.12.55 4.19 1.6 6.01L0 24l6.15-1.61A11.96 11.96 0 0 0 12.02 24C18.64 24 24 18.62 24 12c0-3.2-1.25-6.21-3.5-8.52zM12.02 21.8c-1.79 0-3.54-.48-5.07-1.38l-.36-.21-3.65.96.97-3.55-.23-.37A9.77 9.77 0 0 1 2.22 12c0-5.4 4.4-9.8 9.8-9.8 2.62 0 5.08 1.02 6.93 2.87A9.73 9.73 0 0 1 21.82 12c0 5.4-4.4 9.8-9.8 9.8zm5.38-7.35c-.29-.14-1.71-.84-1.97-.94-.26-.1-.45-.14-.64.14-.19.29-.74.94-.9 1.13-.17.19-.33.21-.62.07-.29-.14-1.22-.45-2.32-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.59.13-.13.29-.33.43-.5.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.5-.07-.14-.64-1.55-.88-2.13-.23-.55-.46-.48-.64-.49h-.55c-.19 0-.5.07-.76.36-.26.29-1 1-1 2.43s1.02 2.82 1.16 3.01c.14.19 2.01 3.07 4.87 4.31.68.29 1.21.46 1.62.59.68.22 1.3.19 1.79.11.55-.08 1.71-.7 1.95-1.38.24-.68.24-1.27.17-1.38-.07-.11-.26-.17-.55-.31z"
+  />
+              </svg>
+            </div></a>
+            <a href="https://www.youtube.com/channel/UCFZDcQeOjnXeK9prqzjfxXQ">
+              <div class="social-icon" title="YouTube">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M21.58 7.19c-.23-.86-.91-1.54-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42c-.86.23-1.54.91-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.91 1.54 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42c.86-.23 1.54-.91 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81zM10 15V9l5.2 3-5.2 3z"
+                  />
+                </svg></div
+            ></a>
+            <a href="https://www.linkedin.com/company/arouzatechlab/">
+              <div class="social-icon" title="LinkedIn">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a2.7 2.7 0 0 0-2.7-2.7c-1.2 0-1.8.7-2.1 1.1v-.8h-3v7.7h3v-4.1c0-.2 0-.4.1-.6.2-.4.5-.8 1-.8.7 0 1 .5 1 1.3v4.2h3M7 18.5v-7.7h-3v7.7h3M5.5 9.2a1.6 1.6 0 0 0 1.6-1.6 1.6 1.6 0 0 0-3.2 0 1.6 1.6 0 0 0 1.6 1.6z"
+                  />
+                </svg></div
+            ></a>
+          </div>
+        </section>
+      </footer>
+
+      <div class="comic-divider"></div>
+
+      <div class="footer-bottom">
+        &copy; 2024 Arouza Techlabs. All Rights Reserved. Built for Impact.
+      </div>
+    </div>
+    <script src="./nav.js"></script>
+    <script src="./footer.js"></script>
+    <script>
+      gsap.registerPlugin(ScrollTrigger);
+
+      // --- AUDIO CONFIGURATION ---
+      // Using the path you specified.
+      // Note: Make sure the file exists at this path relative to your index.html
+      const audioUrl = "./assets/srusti.m4a";
+      let hasGreeted = false;
+
+      function playMyAudio() {
+        if (hasGreeted) return;
+        hasGreeted = true;
+
+        const audio = new Audio(audioUrl);
+        const botMouth = document.getElementById("mouth");
+        const robot = document.getElementById("robotHero");
+
+        // Handle metadata load to ensure audio is valid
+        audio.addEventListener("play", () => {
+          robot.classList.add("speaking");
+          gsap.to(botMouth, {
+            attr: { d: "M100 120 Q115 110 130 120" },
+            repeat: -1,
+            yoyo: true,
+            duration: 0.12,
+          });
+        });
+
+        audio.addEventListener("ended", () => {
+          robot.classList.remove("speaking");
+          gsap.to(botMouth, {
+            attr: { d: "M100 125 Q115 135 130 125" },
+            duration: 0.3,
+          });
+        });
+
+        // Error handling if file is missing
+        audio.addEventListener("error", (e) => {
+          console.error("Audio file not found at: " + audioUrl);
+          hasGreeted = false; // Reset so they can try again if they fix the path
+        });
+
+        audio.play().catch((e) => {
+          console.warn(
+            "Autoplay blocked. User must interact with the page first."
+          );
+          hasGreeted = false;
+        });
+      }
+
+      // Trigger on first click anywhere (browser requirement for audio)
+      window.addEventListener("click", playMyAudio, { once: true });
+      window.addEventListener("touchstart", playMyAudio, { once: true });
+
+      // --- GSAP ANIMATIONS ---
+      window.addEventListener("load", () => {
+        const heroTl = gsap.timeline();
+        heroTl
+          .from(".hero-title", {
+            y: 100,
+            opacity: 0,
+            duration: 1,
+            ease: "back.out(1.7)",
+          })
+          .from(
+            ".hero-tagline",
+            { scale: 0, duration: 0.6, ease: "back.out(2)" },
+            "-=0.5"
+          )
+          .from(
+            ".hero-description",
+            { opacity: 0, y: 20, duration: 0.8 },
+            "-=0.3"
+          )
+          .from(
+            "#heroBtn",
+            { scale: 0.5, opacity: 0, duration: 0.5, ease: "back.out(3)" },
+            "-=0.5"
+          )
+          .from(
+            "#robotHero",
+            { x: 100, opacity: 0, duration: 1.2, ease: "power4.out" },
+            "-=1"
+          );
+
+        gsap.to("#mainBot", {
+          y: -15,
+          duration: 2.5,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+        });
+
+        function blink() {
+          gsap.to(["#leftEye", "#rightEye"], {
+            scaleY: 0,
+            duration: 0.1,
+            repeat: 1,
+            yoyo: true,
+            transformOrigin: "center center",
+            onComplete: () => setTimeout(blink, Math.random() * 4000 + 1000),
+          });
+        }
+        blink();
+
+        gsap.utils.toArray(".reveal-up").forEach((el) => {
+          gsap.from(el, {
+            scrollTrigger: { trigger: el, start: "top 95%" },
+            y: 40,
+            opacity: 0,
+            duration: 0.8,
+          });
+        });
+        gsap.utils.toArray(".reveal-left").forEach((el) => {
+          gsap.from(el, {
+            scrollTrigger: { trigger: el, start: "top 90%" },
+            x: -60,
+            opacity: 0,
+            duration: 0.8,
+          });
+        });
+        gsap.utils.toArray(".reveal-right").forEach((el) => {
+          gsap.from(el, {
+            scrollTrigger: { trigger: el, start: "top 90%" },
+            x: 60,
+            opacity: 0,
+            duration: 0.8,
+          });
+        });
+
+        const btns = document.querySelectorAll(".btn-comic");
+        btns.forEach((btn) => {
+          btn.addEventListener("mousemove", (e) => {
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            gsap.to(btn, { x: x * 0.25, y: y * 0.25, duration: 0.3 });
+          });
+          btn.addEventListener("mouseleave", () => {
+            gsap.to(btn, {
+              x: 0,
+              y: 0,
+              duration: 0.5,
+              ease: "elastic.out(1, 0.3)",
+            });
+          });
+        });
+
+        window.addEventListener("mousemove", (e) => {
+          const x = (e.clientX / window.innerWidth - 0.5) * 15;
+          const y = (e.clientY / window.innerHeight - 0.5) * 10;
+          gsap.to("#face", { x: x, y: y, duration: 0.5 });
+        });
+      });
+    </script>
+  </body>
+</html>

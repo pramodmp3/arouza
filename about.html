@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>About Us | AROUZA TECHLABS</title>
+    <!-- GSAP for Motion Design -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="./about.css" />
+  </head>
+  <body>
+    <nav class="comic-nav" id="mainNav">
+      <!-- Logo Section -->
+      <div class="nav-logo">
+        <a href="./index.html"
+          ><img src="./assets/logo.png" alt="AROUZA TECHLABS"
+        /></a>
+      </div>
+
+      <!-- Desktop Menu -->
+      <div class="nav-menu-wrapper">
+        <ul class="nav-desktop-list">
+          <li class="nav-item"><a href="./index.html">Home</a></li>
+          <li class="nav-item"><a href="./service.html">Services</a></li>
+          <li class="nav-item"><a href="./srusti.html">Srusti AI</a></li>
+          <li class="nav-item"><a href="./about.html">About</a></li>
+        </ul>
+        <a href="./contact.html" class="nav-cta-desktop">Contact</a>
+      </div>
+
+      <!-- Mobile Toggle (Burger) -->
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation">
+        <span class="burger-line line-1"></span>
+        <span class="burger-line line-2"></span>
+        <span class="burger-line line-3"></span>
+      </button>
+
+      <!-- FULL SCREEN Mobile Overlay -->
+      <div class="mobile-overlay" id="mobileOverlay">
+        <div class="mobile-panel" id="mobilePanel">
+          <a href="./index.html" class="mobile-link">Home</a>
+          <a href="./service.html" class="mobile-link">Services</a>
+          <a href="./srusti.html" class="mobile-link">Srusti AI</a>
+          <a href="./about.html" class="mobile-link">About</a>
+          <a href="./contact.html" class="mobile-link mobile-cta">Contact Us</a>
+        </div>
+      </div>
+    </nav>
+    <!-- HERO -->
+    <header class="hero">
+      <div class="hero-content">
+        <h1 class="hero-title">AROUZA<br />TECHLABS</h1>
+        <p class="hero-tagline">Where Pixels Meet Pulse.</p>
+      </div>
+      <svg
+        class="hero-svg"
+        viewBox="0 0 200 200"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          fill="#ffd23f"
+          d="M44.7,-76.4C58.1,-69.2,69.2,-58.1,77.3,-44.7C85.4,-31.3,90.5,-15.6,88.9,-0.9C87.3,13.8,79,27.6,69.5,39.1C60,50.7,49.2,60,37.1,67.6C25,75.2,11.5,81.1,-2.3,85.1C-16.1,89.1,-32.2,91.2,-45.5,85.1C-58.8,79,-69.3,64.7,-76.9,49.8C-84.5,34.9,-89.2,19.4,-89.4,3.8C-89.6,-11.8,-85.3,-27.6,-76.2,-40.3C-67.1,-53,-53.2,-62.6,-38.8,-69.3C-24.4,-76,-9.5,-79.8,4.1,-86.9C17.7,-94,31.3,-83.6,44.7,-76.4Z"
+          transform="translate(100 100)"
+        />
+      </svg>
+    </header>
+
+    <!-- WHO WE ARE -->
+    <section class="container" id="who-we-are">
+      <div class="grid-layout">
+        <div class="illus-wrap">
+          <svg
+            viewBox="0 0 500 500"
+            class="main-illus"
+            style="width: 100%; height: auto"
+          >
+            <rect
+              x="100"
+              y="100"
+              width="300"
+              height="250"
+              rx="20"
+              fill="white"
+              stroke="var(--black)"
+              stroke-width="8"
+            />
+            <circle
+              cx="250"
+              cy="225"
+              r="80"
+              fill="var(--purple)"
+              stroke="var(--black)"
+              stroke-width="8"
+            />
+            <path
+              d="M210 200 Q250 150 290 200"
+              stroke="var(--white)"
+              stroke-width="6"
+              fill="none"
+            />
+            <circle cx="250" cy="300" r="10" fill="var(--yellow)" />
+          </svg>
+        </div>
+        <div style="text-align: center" class="md-text-left">
+          <h2 style="font-size: clamp(2rem, 8vw, 3rem); margin-bottom: 20px">
+            The Lab<br /><span style="color: var(--purple)">Of Innovation</span>
+          </h2>
+          <p>
+            Arouza Techlabs isn't just a software house; it's a creative
+            foundry. Founded in 2020, we set out to break the "corporate gray"
+            mold of IT by infusing every line of code with personality.
+          </p>
+          <div class="chips-container">
+            <div class="chip"><span>🚀</span> Speed</div>
+            <div class="chip"><span>🎨</span> Design</div>
+            <div class="chip"><span>🛠️</span> Quality</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VISION & MISSION -->
+    <section
+      id="vision-mission"
+      style="background: var(--white); overflow: hidden"
+    >
+      <div class="container grid-layout">
+        <div class="card vision comic-border">
+          <svg class="svg-icon" viewBox="0 0 100 100">
+            <circle
+              cx="50"
+              cy="50"
+              r="40"
+              fill="var(--purple)"
+              stroke="var(--black)"
+              stroke-width="4"
+            />
+            <path
+              d="M30 50 L70 50 M50 30 L50 70"
+              stroke="white"
+              stroke-width="6"
+            />
+          </svg>
+          <h3>Our Vision</h3>
+          <p>
+            To become the global benchmark for creative technology, where every
+            digital experience feels as vivid and engaging as a graphic novel.
+          </p>
+        </div>
+        <div class="card mission comic-border">
+          <svg class="svg-icon" viewBox="0 0 100 100">
+            <rect
+              x="20"
+              y="20"
+              width="60"
+              height="60"
+              fill="var(--orange)"
+              stroke="var(--black)"
+              stroke-width="4"
+            />
+            <path
+              d="M30 40 L70 40 M30 60 L70 60"
+              stroke="white"
+              stroke-width="6"
+            />
+          </svg>
+          <h3>Our Mission</h3>
+          <p>
+            Empowering businesses by building highly resilient, scalable, and
+            visually explosive digital assets that leave users in awe.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOUNDERS -->
+    <section class="container" id="founders">
+      <h2
+        style="
+          text-align: center;
+          font-size: clamp(1.8rem, 6vw, 2.5rem);
+          margin-bottom: 20px;
+        "
+      >
+        Message from the <span style="color: var(--purple)">Founders</span>
+      </h2>
+      <div class="founders-grid">
+        <div class="founder-card comic-border">
+          <div class="founder-img-frame">
+            <img src="./assets/pramoda.png" alt="pramod" />
+          </div>
+          <h3>PRAMOD M P</h3>
+          <span class="founder-role">CEO & VISIONARY</span>
+          <p style="font-size: 0.9rem; font-style: italic">
+            "We build for the bold. Tech doesn't have to be boring."
+          </p>
+        </div>
+        <div
+          class="founder-card comic-border"
+          style="border-color: var(--orange)"
+        >
+          <div class="founder-img-frame" style="border-color: var(--orange)">
+            <img src="./assets/pavan.jpeg" alt="pavan" />
+          </div>
+          <h3>PAVAN N S</h3>
+          <span class="founder-role">CTO & ARCHITECT</span>
+          <p style="font-size: 0.9rem; font-style: italic">
+            "Our architecture is built for scale, heart is in the details."
+          </p>
+        </div>
+        <div
+          class="founder-card comic-border"
+          style="border-color: var(--green)"
+        >
+          <div class="founder-img-frame" style="border-color: var(--green)">
+            <img src="./assets/abhi.jpeg" alt="Abhi" />
+          </div>
+          <h3>ABHINAY KOLKUR</h3>
+          <span class="founder-role">CREATIVE DIRECTOR</span>
+          <p style="font-size: 0.9rem; font-style: italic">
+            "Design is the silent ambassador of your brand."
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <div class="stats-bar">
+      <div class="stat-item">
+        <h3><span class="counter">150</span>+</h3>
+        <p>PROJECTS DONE</p>
+      </div>
+      <div class="stat-item">
+        <h3><span class="counter">12</span></h3>
+        <p>AWARDS WON</p>
+      </div>
+      <div class="stat-item">
+        <h3><span class="counter">45</span></h3>
+        <p>HAPPY HEROES</p>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <section class="container" style="text-align: center">
+      <div class="card comic-border" style="background: var(--yellow)">
+        <h2 style="font-size: clamp(1.5rem, 8vw, 2.5rem); margin-bottom: 15px">
+          Ready to Level Up?
+        </h2>
+        <p style="font-weight: 800; margin-bottom: 25px; font-size: 0.9rem">
+          LET'S BUILD SOMETHING LEGENDARY.
+        </p>
+        <div class="btn-wrap" style="margin: 0 auto">
+          <a href="./contact.html" class="btn-comic" id="magnetic-btn"
+            >JOIN THE LAB</a
+          >
+        </div>
+      </div>
+    </section>
+    <div class="footer-wrapper">
+      <footer class="comic-footer">
+        <!-- 1. BRAND PANEL -->
+        <section class="comic-panel brand-panel">
+          <div class="brand-logo"><img src="./assets/logo.png" alt="" /></div>
+          <!-- <h2 class="brand-name">Arouza Techlabs</h2> -->
+          <p class="brand-note">Engineering the future, frame by frame.</p>
+        </section>
+
+        <!-- 6. NEWSLETTER PANEL -->
+        <section class="comic-panel newsletter-panel">
+          <span class="panel-title">Join the Lab</span>
+          <p style="margin-bottom: 15px; font-weight: 500">
+            Get the latest tech blueprints in your inbox.
+          </p>
+          <form class="newsletter-form" onsubmit="return true;">
+            <input
+              type="email"
+              class="comic-input"
+              placeholder="Your Email Address"
+              required
+            />
+            <button type="submit" class="comic-btn">Subscribe</button>
+          </form>
+          <p
+            id="thankYouMsg"
+            style="display: none; margin-top: 10px; color: green"
+          >
+            Thank you for subscribing!
+          </p>
+        </section>
+
+        <!-- 2. QUICK LINKS PANEL -->
+        <nav class="comic-panel links-panel">
+          <span class="panel-title">Navigation</span>
+          <ul class="links-list">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./service.html">Services</a></li>
+            <li><a href="./srusti.html">Srusti AI</a></li>
+            <li><a href="./about.html">About</a></li>
+            <li><a href="./contact.html">Contact</a></li>
+            <li><a href="./blog.html">Blog</a></li>
+          </ul>
+        </nav>
+
+        <!-- 3. LATEST NEWS PANEL -->
+        <section class="comic-panel news-panel">
+          <span class="panel-title">Dispatch</span>
+          <div class="news-item">
+            <div class="news-date">MAR 2024</div>
+            <div class="news-headline">Srusti AI reaches 2.0 stability.</div>
+          </div>
+          <div class="news-item">
+            <div class="news-date">FEB 2024</div>
+            <div class="news-headline">New HQ opened in Bangalore.</div>
+          </div>
+        </section>
+
+        <!-- 4. HQ ADDRESS PANEL -->
+        <section class="comic-panel address-panel">
+          <span class="panel-title">Headquarters</span>
+          <address>
+            Basavanagudi<br />
+            Bangalore, India<br />
+            Zip: 560004 <br />
+            Contact: +91 9538424583 <br />
+            E-mail: contact@arouza.com
+          </address>
+        </section>
+
+        <!-- 5. SOCIAL FOLLOW PANEL -->
+        <section class="comic-panel social-panel">
+          <span class="panel-title">Follow Us</span>
+          <div class="social-grid">
+            <a
+              href="https://www.instagram.com/arouzatechlabs/?igsh=YWdpbzFxY3Q4MTQ1#"
+            >
+              <div class="social-icon" title="Instagram">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M7.75 2h8.5C19.42 2 22 4.58 22 7.75v8.5C22 19.42 19.42 22 16.25 22h-8.5C4.58 22 2 19.42 2 16.25v-8.5C2 4.58 4.58 2 7.75 2zm0 1.5c-2.35 0-4.25 1.9-4.25 4.25v8.5c0 2.35 1.9 4.25 4.25 4.25h8.5c2.35 0 4.25-1.9 4.25-4.25v-8.5c0-2.35-1.9-4.25-4.25-4.25h-8.5zM12 7a5 5 0 110 10 5 5 0 010-10zm0 1.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm5.25-.75a1 1 0 110 2 1 1 0 010-2z"
+                  />
+                </svg></div
+            ></a>
+            <div class="social-icon" title="Twitter">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                />
+              </svg>
+            </div>
+            <a href="https://wa.me/919538424583">
+              <div class="social-icon" title="Facebook">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M20.52 3.48A11.82 11.82 0 0 0 12.02 0C5.4 0 .02 5.38.02 12c0 2.12.55 4.19 1.6 6.01L0 24l6.15-1.61A11.96 11.96 0 0 0 12.02 24C18.64 24 24 18.62 24 12c0-3.2-1.25-6.21-3.5-8.52zM12.02 21.8c-1.79 0-3.54-.48-5.07-1.38l-.36-.21-3.65.96.97-3.55-.23-.37A9.77 9.77 0 0 1 2.22 12c0-5.4 4.4-9.8 9.8-9.8 2.62 0 5.08 1.02 6.93 2.87A9.73 9.73 0 0 1 21.82 12c0 5.4-4.4 9.8-9.8 9.8zm5.38-7.35c-.29-.14-1.71-.84-1.97-.94-.26-.1-.45-.14-.64.14-.19.29-.74.94-.9 1.13-.17.19-.33.21-.62.07-.29-.14-1.22-.45-2.32-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.59.13-.13.29-.33.43-.5.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.5-.07-.14-.64-1.55-.88-2.13-.23-.55-.46-.48-.64-.49h-.55c-.19 0-.5.07-.76.36-.26.29-1 1-1 2.43s1.02 2.82 1.16 3.01c.14.19 2.01 3.07 4.87 4.31.68.29 1.21.46 1.62.59.68.22 1.3.19 1.79.11.55-.08 1.71-.7 1.95-1.38.24-.68.24-1.27.17-1.38-.07-.11-.26-.17-.55-.31z"
+                  />
+                </svg></div
+            ></a>
+            <a href="https://www.youtube.com/channel/UCFZDcQeOjnXeK9prqzjfxXQ">
+              <div class="social-icon" title="YouTube">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M21.58 7.19c-.23-.86-.91-1.54-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42c-.86.23-1.54.91-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.91 1.54 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42c.86-.23 1.54-.91 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81zM10 15V9l5.2 3-5.2 3z"
+                  />
+                </svg></div
+            ></a>
+            <a href="https://www.linkedin.com/company/arouzatechlab/">
+              <div class="social-icon" title="LinkedIn">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a2.7 2.7 0 0 0-2.7-2.7c-1.2 0-1.8.7-2.1 1.1v-.8h-3v7.7h3v-4.1c0-.2 0-.4.1-.6.2-.4.5-.8 1-.8.7 0 1 .5 1 1.3v4.2h3M7 18.5v-7.7h-3v7.7h3M5.5 9.2a1.6 1.6 0 0 0 1.6-1.6 1.6 1.6 0 0 0-3.2 0 1.6 1.6 0 0 0 1.6 1.6z"
+                  />
+                </svg></div
+            ></a>
+          </div>
+        </section>
+      </footer>
+
+      <div class="comic-divider"></div>
+
+      <div class="footer-bottom">
+        &copy; 2024 Arouza Techlabs. All Rights Reserved. Built for Impact.
+      </div>
+    </div>
+    <script src="./nav.js"></script>
+    <script src="./footer.js"></script>
+    <script>
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Responsive Text Alignment Helper
+      if (window.innerWidth >= 992) {
+        document
+          .querySelectorAll(".md-text-left")
+          .forEach((el) => (el.style.textAlign = "left"));
+      }
+
+      window.addEventListener("load", () => {
+        const tl = gsap.timeline();
+        tl.from(".hero-title", {
+          y: 50,
+          opacity: 0,
+          duration: 1,
+          ease: "power4.out",
+        })
+          .from(
+            ".hero-tagline",
+            { scale: 0, rotation: -10, duration: 0.6, ease: "back.out(2)" },
+            "-=0.4"
+          )
+          .from(".hero-svg", { x: 100, opacity: 0, duration: 1 }, "-=0.5");
+
+        gsap.utils.toArray("section").forEach((section) => {
+          gsap.to(section, {
+            scrollTrigger: { trigger: section, start: "top 85%" },
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power2.out",
+          });
+        });
+
+        // Founder Cards staggered entrance
+        gsap.from(".founder-card", {
+          scrollTrigger: { trigger: "#founders", start: "top 75%" },
+          y: 40,
+          opacity: 0,
+          stagger: 0.15,
+          duration: 0.8,
+          ease: "back.out(1.2)",
+        });
+
+        // Counters
+        document.querySelectorAll(".counter").forEach((counter) => {
+          gsap.from(counter, {
+            scrollTrigger: { trigger: ".stats-bar", start: "top 90%" },
+            innerText: 0,
+            duration: 2,
+            snap: { innerText: 1 },
+          });
+        });
+      });
+
+      // Magnetic Button logic (Desktop only for performance)
+      const magBtnWrap = document.querySelector(".btn-wrap");
+      const btn = document.querySelector("#magnetic-btn");
+
+      if (window.matchMedia("(min-width: 1024px)").matches) {
+        magBtnWrap.addEventListener("mousemove", (e) => {
+          const rect = magBtnWrap.getBoundingClientRect();
+          const x = (e.clientX - rect.left - rect.width / 2) * 0.4;
+          const y = (e.clientY - rect.top - rect.height / 2) * 0.4;
+          gsap.to(btn, { x, y, duration: 0.3 });
+        });
+        magBtnWrap.addEventListener("mouseleave", () => {
+          gsap.to(btn, {
+            x: 0,
+            y: 0,
+            duration: 0.6,
+            ease: "elastic.out(1, 0.3)",
+          });
+        });
+      }
+
+      // Touch Feedback
+      btn.addEventListener("touchstart", () =>
+        gsap.to(btn, { scale: 0.95, duration: 0.1 })
+      );
+      btn.addEventListener("touchend", () =>
+        gsap.to(btn, { scale: 1, duration: 0.3, ease: "back.out(3)" })
+      );
+
+      // Idle Floating for Founders
+      gsap.to(".founder-img-frame", {
+        y: -8,
+        duration: 2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        stagger: 0.2,
+      });
+      const form = document.getElementById("newsletterForm");
+      const emailInput = document.getElementById("emailInput");
+      const message = document.getElementById("thankYouMsg");
+
+      form.addEventListener("submit", function () {
+        emailInput.value = ""; // clear input
+        message.style.display = "block"; // show thank you message
+      });
+    </script>
+  </body>
+</html>
